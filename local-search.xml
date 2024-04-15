@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>hexo博客搭建</title>
+    <link href="/2024/04/15/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    <url>/2024/04/15/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</url>
+    
+    <content type="html"><![CDATA[<h1 id="hexo环境搭建"><a href="#hexo环境搭建" class="headerlink" title="hexo环境搭建"></a>hexo环境搭建</h1><h2 id="一、前置条件"><a href="#一、前置条件" class="headerlink" title="一、前置条件"></a>一、前置条件</h2><ul><li>Github 账号<ul><li>都能搭建个人博客了肯定会用 Github 吧~</li></ul></li><li>NodeJS<ul><li>nodejs 要好好配置哦，不然之后会很崩溃的，嘻</li><li>可以参考下这个<a href="https://blog.csdn.net/yaorongke/article/details/119084295">NodeJS安装及配置(Windows)</a></li></ul></li><li>Git，(理论上cmd也是可以的，我就是用的cmd)</li></ul><h2 id="二、开始搭建"><a href="#二、开始搭建" class="headerlink" title="二、开始搭建"></a>二、开始搭建</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>环境配置</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>环境配置</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2024_Hgame_week1_re</title>
     <link href="/2024/04/14/2024-Hgame-week1-re/"/>
     <url>/2024/04/14/2024-Hgame-week1-re/</url>
