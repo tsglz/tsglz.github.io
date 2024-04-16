@@ -24,3 +24,16 @@ html::-webkit-scrollbar-thumb{
 html::-webkit-scrollbar-corner {
 	background:#82AFFF;
 }
+
+
+/* 设置背景图片 */
+body {
+    background: url(/yog.jpeg);
+    background-attachment: fixed;
+    background-size: cover;  
+  }
+
+  
+
+
+
