@@ -16,18 +16,20 @@
   <meta name="author" content="Tsglz">
   <meta name="keywords" content="">
   
-    <meta name="description" content="感谢大佬们给了这么多学习的机会，嘻 前面一部分是自己做的，后面一部分是复现，这么多题，狠狠鞭策自己~">
+    <meta name="description" content="感谢大佬们给了这么多学习的机会，嘻 前面一部分是自己做的，后面一部分是复现，这么多题，狠狠鞭策自己~ 聪明的信使 拖进IDA  凯撒，偏移量9  原题  oujp{H0d_TwXf_Lahyc0_14_e3ah_Rvy0ac@wc!}   解密后  flag{Y0u_KnOw_Crypt0_14_v3ry_Imp0rt@nt!}    喵喵喵的flag碎了一地 尝试打开，一闪而过 查壳&gt;&amp;g">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2024-XYCTF-re">
 <meta property="og:url" content="http://example.com/2024/04/27/2024-XYCTF-re/index.html">
 <meta property="og:site_name" content="Tsglz的个人博客">
-<meta property="og:description" content="感谢大佬们给了这么多学习的机会，嘻 前面一部分是自己做的，后面一部分是复现，这么多题，狠狠鞭策自己~">
+<meta property="og:description" content="感谢大佬们给了这么多学习的机会，嘻 前面一部分是自己做的，后面一部分是复现，这么多题，狠狠鞭策自己~ 聪明的信使 拖进IDA  凯撒，偏移量9  原题  oujp{H0d_TwXf_Lahyc0_14_e3ah_Rvy0ac@wc!}   解密后  flag{Y0u_KnOw_Crypt0_14_v3ry_Imp0rt@nt!}    喵喵喵的flag碎了一地 尝试打开，一闪而过 查壳&gt;&amp;g">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/04/27/2024-XYCTF-re/miaomiaomiao.png">
 <meta property="article:published_time" content="2024-04-27T02:54:40.000Z">
-<meta property="article:modified_time" content="2024-04-27T03:09:53.055Z">
+<meta property="article:modified_time" content="2024-04-27T03:13:41.093Z">
 <meta property="article:author" content="Tsglz">
 <meta property="article:tag" content="CTF_wps">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/04/27/2024-XYCTF-re/miaomiaomiao.png">
   
   
   
@@ -253,7 +255,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          44 字
+          157 字
         
       </span>
     
@@ -264,7 +266,7 @@
         
         
         
-          1 分钟
+          2 分钟
         
       </span>
     
@@ -316,6 +318,50 @@
                 
                 <p>感谢大佬们给了这么多学习的机会，嘻</p>
 <p>前面一部分是自己做的，后面一部分是复现，这么多题，狠狠鞭策自己~</p>
+<h1 id="聪明的信使"><a href="#聪明的信使" class="headerlink" title="聪明的信使"></a>聪明的信使</h1><ul>
+<li><p>拖进IDA</p>
+</li>
+<li><p>凯撒，偏移量9</p>
+</li>
+<li><p>原题</p>
+<ul>
+<li>oujp{H0d_TwXf_Lahyc0_14_e3ah_Rvy0ac@wc!}</li>
+</ul>
+</li>
+<li><p>解密后</p>
+<ul>
+<li>flag{Y0u_KnOw_Crypt0_14_v3ry_Imp0rt@nt!}</li>
+</ul>
+</li>
+</ul>
+<h1 id="喵喵喵的flag碎了一地"><a href="#喵喵喵的flag碎了一地" class="headerlink" title="喵喵喵的flag碎了一地"></a>喵喵喵的flag碎了一地</h1><ul>
+<li>尝试打开，一闪而过</li>
+<li>查壳&gt;&gt;&gt;没壳</li>
+<li>拖进IDA<ul>
+<li>能看到提示</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2024/04/27/2024-XYCTF-re/miaomiaomiao.png" srcset="/img/loading.gif" lazyload alt="miaomiaomiao"></p>
+<ul>
+<li>shift+F12 转string<ul>
+<li>flag{My_fl@g_h4s_</li>
+<li>这是flag的前半段</li>
+</ul>
+</li>
+<li>查看函数，发现 br0ken_4parT_<ul>
+<li>这是flag的第二段</li>
+<li>里面有提示 “Learn about <code>Xref</code> and Find out which function refers me to get the last part of the flag!”</li>
+<li>直接 x 找找看</li>
+</ul>
+</li>
+<li>在汇编界面查看并拼起来<ul>
+<li>Bu7_Y0u_c@n_f1x_1t!}</li>
+<li>这是flag的后半段</li>
+</ul>
+</li>
+<li>flag{My_fl@g_h4s_br0ken_4parT_Bu7_Y0u_c@n_f1x_1t!}</li>
+</ul>
 
                 
               </div>
