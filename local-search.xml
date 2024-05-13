@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>2024-H&amp;amp;NCTF</title>
+    <link href="/2024/05/13/2024-H&amp;NCTF/"/>
+    <url>/2024/05/13/2024-H&amp;NCTF/</url>
+    
+    <content type="html"><![CDATA[<h1 id="最喜欢的逆向题"><a href="#最喜欢的逆向题" class="headerlink" title="最喜欢的逆向题"></a>最喜欢的逆向题</h1><p>签到题</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> __cdecl <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span> argc, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **argv, <span class="hljs-type">const</span> <span class="hljs-type">char</span> **envp)</span><br>&#123;<br>  <span class="hljs-type">unsigned</span> __int64 v3; <span class="hljs-comment">// rax</span><br>  <span class="hljs-type">char</span> Buffer[<span class="hljs-number">272</span>]; <span class="hljs-comment">// [rsp+20h] [rbp-128h] BYREF</span><br>  sub_140001010(aFlagIs);<br>  gets_s(Buffer, <span class="hljs-number">0x104</span>ui64);<br>  v3 = <span class="hljs-number">-1</span>i64;<br>  <span class="hljs-keyword">do</span><br>    ++v3;<br>  <span class="hljs-keyword">while</span> ( Buffer[v3] );<br>  <span class="hljs-keyword">if</span> ( v3 &lt; <span class="hljs-number">0x19</span> )                        <span class="hljs-comment">// 25</span><br>  &#123;<br>    <span class="hljs-keyword">if</span> ( Buffer[<span class="hljs-number">5</span>] == <span class="hljs-number">105</span> &amp;&amp; Buffer[<span class="hljs-number">7</span>] == Buffer[<span class="hljs-number">10</span>] &amp;&amp; Buffer[<span class="hljs-number">15</span>] == Buffer[<span class="hljs-number">22</span>] )<br>      sub_140001070(Buffer);<br>    <span class="hljs-keyword">else</span><br>      sub_140001010(<span class="hljs-string">&quot;flag is wrong&quot;</span>);<br>    getchar();<br>  &#125;<br>  <span class="hljs-keyword">else</span><br>  &#123;<br>    sub_140001010(<span class="hljs-string">&quot;flag is too long&quot;</span>);<br>  &#125;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><p>流程就是 输入&gt;长度判断&gt;字符比较，通过了就进入正确的分支</p><p>直接进入 正确分支查看</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">v1 = *(<span class="hljs-type">char</span> *)(a1 + <span class="hljs-number">5</span>);<span class="hljs-comment">//传入的参数就是a1数组</span><br></code></pre></td></tr></table></figure><p>已经知道a1的第5位（ascii码105），直接上手找就行，直接拿flag</p><figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">H<span class="hljs-meta">&amp;NCTF&#123;Do_Y0u_like_F5_1n_Rev&#125;</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>CTF_Re</category>
+      
+      <category>H&amp;NCTF</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CTF_wps</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2024-XYCTF-re</title>
     <link href="/2024/04/27/2024-XYCTF-re/"/>
     <url>/2024/04/27/2024-XYCTF-re/</url>
