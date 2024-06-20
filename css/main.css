@@ -765,7 +765,7 @@ sup > a::before,
   padding: 3rem 0;
 }
 html {
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 0.02em;
 }
 html,
@@ -834,16 +834,16 @@ i.iconfont {
 }
 :root {
   --color-mode: "light";
-  --body-bg-color: #c1e5e5;
-  --board-bg-color: rgba(255, 255, 255, 0.5);
-  --text-color: #e0d579;
-  --sec-text-color: #4f5967;
-  --post-text-color: #310c4b;
-  --post-heading-color: #1a202c;
-  --post-link-color: #0366d6;
-  --link-hover-color: #30a9de;
-  --link-hover-bg-color: #f8f9fa;
-  --line-color: #eaecef;
+  --body-bg-color: rgba(61, 135, 181, 0.46);
+  --board-bg-color: rgba(32, 85, 113, 0.5);
+  --text-color: #ddd7ac;
+  --sec-text-color: #cecece;
+  --post-text-color: #90e381;
+  --post-heading-color: #80a7ff;
+  --post-link-color: #7bf7f2;
+  --link-hover-color: #d3cc7f;
+  --link-hover-bg-color: #364151;
+  --line-color: #6185bc;
   --navbar-bg-color: #062127;
   --navbar-text-color: #efefda;
   --subtitle-color: #fff;
@@ -853,21 +853,21 @@ i.iconfont {
   --button-hover-bg-color: rgb(242, 243, 245);
   --highlight-bg-color: #f6f8fa;
   --inlinecode-bg-color: rgba(175,184,193,0.2);
-  --fold-title-color: #e0d579;
-  --fold-border-color: #eaecef;
+  --fold-title-color: #ddd7ac;
+  --fold-border-color: #6185bc;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --color-mode: "dark";
   }
   :root:not([data-user-color-scheme]) {
-    --body-bg-color: #181c27;
+    --body-bg-color: rgb(24, 28, 39);
     --board-bg-color: rgba(25, 58, 75, 0.3);
     --text-color: #c4c6c9;
     --sec-text-color: #cecece;
     --post-text-color: #c4c6c9;
     --post-heading-color: #c4c6c9;
-    --post-link-color: #9ed183;
+    --post-link-color: #b7f497;
     --link-hover-color: #30a9de;
     --link-hover-bg-color: #364151;
     --line-color: #435266;
@@ -899,13 +899,13 @@ i.iconfont {
 }
 @media not print {
   [data-user-color-scheme="dark"] {
-    --body-bg-color: #181c27;
+    --body-bg-color: rgb(24, 28, 39);
     --board-bg-color: rgba(25, 58, 75, 0.3);
     --text-color: #c4c6c9;
     --sec-text-color: #cecece;
     --post-text-color: #c4c6c9;
     --post-heading-color: #c4c6c9;
-    --post-link-color: #9ed183;
+    --post-link-color: #b7f497;
     --link-hover-color: #30a9de;
     --link-hover-bg-color: #364151;
     --line-color: #435266;
