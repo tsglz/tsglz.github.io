@@ -24,7 +24,7 @@
 <meta property="og:description" content="使用python实现简单的区块链（未完）一条区块链要包含创世区块和后续区块，所有区块由哈希散列函数链接在一起。 所以首先要实现的是创建一个 Block 类 12345678910111213141516171819import hashlibimport datetimeclass Block:    def __init__(self,prev_hash, transaction, timest">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-11T06:05:14.000Z">
-<meta property="article:modified_time" content="2024-07-11T06:26:55.874Z">
+<meta property="article:modified_time" content="2024-07-11T14:08:34.898Z">
 <meta property="article:author" content="Tsglz">
 <meta property="article:tag" content="区块链">
 <meta name="twitter:card" content="summary_large_image">
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          429 字
+          521 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          4 分钟
+          5 分钟
         
       </span>
     
@@ -326,6 +326,9 @@
 
 <p>定义创建后续区块的函数，其中<em>接收者、发送者、交易金额</em>都需要自己填写，然后函数会帮助拼接以及后续的运算，最后输出结果</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_blocks</span>(<span class="hljs-params">block_chains,i</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Input the transaction information for block &#123;&#125;:&quot;</span>.<span class="hljs-built_in">format</span>(i))<br><br>    input_sender = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the sender:&quot;</span>)<br>    input_receiver = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the receiver:&quot;</span>)<br>    input_amount = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the amount:&quot;</span>)<br>    <br>    transaction = &#123;<span class="hljs-string">&quot;sender&quot;</span>:input_sender,<span class="hljs-string">&quot;receiver&quot;</span>:input_receiver,<span class="hljs-string">&quot;amount&quot;</span>:input_amount&#125;<br>    <br>    block_chains.append(Block(block_chains[i-<span class="hljs-number">1</span>].<span class="hljs-built_in">hash</span>, transaction , datetime.datetime.now()))<br>    <span class="hljs-comment"># 前一个区块的哈希，交易信息，时间戳</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Block &#123;&#125; is created, and the transaction is: &#123;&#125; transfer &#123;&#125; BTC to &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(i,input_sender,input_amount,input_receiver))<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The hash of block &#123;&#125; is: &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(i,block_chains[i].<span class="hljs-built_in">hash</span>))<br>    i += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> block_chains,i<br></code></pre></td></tr></table></figure>
+
+<p>添加一个简单的验证链合法性的函数，函数分成两个循环，一部分是检查每块的哈希是否被修改；另一部分是检查当前的 blockhead 里前一个节点的哈希和前一个区块是否能对的上</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">is_valid</span>(<span class="hljs-params">chain</span>):<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(chain)):<br>        <span class="hljs-keyword">if</span> chain[i].get_hash() == chain[i].<span class="hljs-built_in">hash</span>:<br>            <span class="hljs-keyword">if</span> chain[i].prev_hash != chain[i-<span class="hljs-number">1</span>].<span class="hljs-built_in">hash</span>:<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
 
 <p>创建主函数</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Welcome&quot;</span>)<br>    i = <span class="hljs-number">1</span><br>    block_chains = [Block.create_genesis_block()]<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Genesis Block is created.Hash is: &quot;</span>,block_chains[<span class="hljs-number">0</span>].<span class="hljs-built_in">hash</span>)<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        block_chains,i = create_blocks(block_chains,i)<br></code></pre></td></tr></table></figure>
