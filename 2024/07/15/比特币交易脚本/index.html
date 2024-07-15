@@ -16,22 +16,22 @@
   <meta name="author" content="Tsglz">
   <meta name="keywords" content="">
   
-    <meta name="description" content="使用python实现简单的区块链（未完）一条区块链要包含创世区块和后续区块，所有区块由哈希散列函数链接在一起。 所以首先要实现的是创建一个 Block 类 12345678910111213141516171819import hashlibimport datetimeclass Block:    def __init__(self,prev_hash, transaction, timest">
+    <meta name="description" content="比特币交易脚本P2PK（Pay to Public Key）input script:    PUSHDATA(Sig)output script:    PUSHDATA(PubKey)    CHECKSIG  把输入脚本中的签名压入栈 把输出中的公钥压入栈 把栈顶的两个两个元素弹出来，用公钥检查签名是否正确 正确则返回 TRUE，否则交易非法  P2PKH（Pay to Public Key">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用python实现简单的区块链">
-<meta property="og:url" content="http://example.com/2024/07/11/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE/index.html">
+<meta property="og:title" content="比特币交易脚本">
+<meta property="og:url" content="http://example.com/2024/07/15/%E6%AF%94%E7%89%B9%E5%B8%81%E4%BA%A4%E6%98%93%E8%84%9A%E6%9C%AC/index.html">
 <meta property="og:site_name" content="Tsglz的个人博客">
-<meta property="og:description" content="使用python实现简单的区块链（未完）一条区块链要包含创世区块和后续区块，所有区块由哈希散列函数链接在一起。 所以首先要实现的是创建一个 Block 类 12345678910111213141516171819import hashlibimport datetimeclass Block:    def __init__(self,prev_hash, transaction, timest">
+<meta property="og:description" content="比特币交易脚本P2PK（Pay to Public Key）input script:    PUSHDATA(Sig)output script:    PUSHDATA(PubKey)    CHECKSIG  把输入脚本中的签名压入栈 把输出中的公钥压入栈 把栈顶的两个两个元素弹出来，用公钥检查签名是否正确 正确则返回 TRUE，否则交易非法  P2PKH（Pay to Public Key">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-11T06:05:14.000Z">
-<meta property="article:modified_time" content="2024-07-11T14:08:34.898Z">
+<meta property="article:published_time" content="2024-07-15T14:45:53.000Z">
+<meta property="article:modified_time" content="2024-07-15T14:47:51.752Z">
 <meta property="article:author" content="Tsglz">
 <meta property="article:tag" content="区块链">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>使用python实现简单的区块链 - Tsglz的个人博客</title>
+  <title>比特币交易脚本 - Tsglz的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="使用python实现简单的区块链"></span>
+            <span id="subtitle" data-typed-text="比特币交易脚本"></span>
           
         </div>
 
@@ -241,8 +241,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-11 14:05" pubdate>
-          2024年7月11日 下午
+        <time datetime="2024-07-15 22:45" pubdate>
+          2024年7月15日 晚上
         </time>
       </span>
     
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          521 字
+          619 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          5 分钟
+          6 分钟
         
       </span>
     
@@ -309,30 +309,81 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">使用python实现简单的区块链</h1>
+            <h1 id="seo-header">比特币交易脚本</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="使用python实现简单的区块链（未完）"><a href="#使用python实现简单的区块链（未完）" class="headerlink" title="使用python实现简单的区块链（未完）"></a>使用python实现简单的区块链（未完）</h1><p>一条区块链要包含创世区块和后续区块，所有区块由哈希散列函数链接在一起。</p>
-<p>所以首先要实现的是创建一个 Block 类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hashlib<br><span class="hljs-keyword">import</span> datetime<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Block</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,prev_hash, transaction, timestamp</span>):<br>        self.prev_hash = prev_hash<br>        self.transaction = transaction<br>        self.timestamp = timestamp<br>        self.<span class="hljs-built_in">hash</span> = self.get_hash()<br><br>    <span class="hljs-comment">#创建创世区块</span><br><span class="hljs-meta">    @staticmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">create_genesis_block</span>():<br>        <span class="hljs-keyword">return</span> Block(<span class="hljs-string">&#x27;0&#x27;</span>, [], datetime.datetime.now())<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_hash</span>(<span class="hljs-params">self</span>):<br>        head_bin = <span class="hljs-built_in">str</span>(self.prev_hash) + <span class="hljs-built_in">str</span>(self.transaction) + <span class="hljs-built_in">str</span>(self.timestamp)<br>        out_hash = hashlib.sha256(head_bin.encode()).hexdigest()<br>        <span class="hljs-keyword">return</span> out_hash<br></code></pre></td></tr></table></figure>
-
-<p>因为需要用到<strong>前一个区块的哈希，交易信息，时间戳</strong>三个信息，所以提前定义初始化函数以便使用，同时要包含两个库：<em>hashlib</em> 和 <em>datatime</em></p>
-<p>将上述三部分拼接在一起后进行 sha256 处理，即可得到 hash</p>
-<p>Block 类中有一个操作：创建创世区块。其中上一个区块的哈希：0；没有发生交易：0；时间戳由 datatime 提供</p>
-<p>接下来进行主函数的实现，需要导入之前创建好的 Block 模块</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> Block <span class="hljs-keyword">import</span> Block<br><span class="hljs-keyword">import</span> datetime<br></code></pre></td></tr></table></figure>
-
-<p>定义创建后续区块的函数，其中<em>接收者、发送者、交易金额</em>都需要自己填写，然后函数会帮助拼接以及后续的运算，最后输出结果</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_blocks</span>(<span class="hljs-params">block_chains,i</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Input the transaction information for block &#123;&#125;:&quot;</span>.<span class="hljs-built_in">format</span>(i))<br><br>    input_sender = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the sender:&quot;</span>)<br>    input_receiver = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the receiver:&quot;</span>)<br>    input_amount = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the amount:&quot;</span>)<br>    <br>    transaction = &#123;<span class="hljs-string">&quot;sender&quot;</span>:input_sender,<span class="hljs-string">&quot;receiver&quot;</span>:input_receiver,<span class="hljs-string">&quot;amount&quot;</span>:input_amount&#125;<br>    <br>    block_chains.append(Block(block_chains[i-<span class="hljs-number">1</span>].<span class="hljs-built_in">hash</span>, transaction , datetime.datetime.now()))<br>    <span class="hljs-comment"># 前一个区块的哈希，交易信息，时间戳</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Block &#123;&#125; is created, and the transaction is: &#123;&#125; transfer &#123;&#125; BTC to &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(i,input_sender,input_amount,input_receiver))<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The hash of block &#123;&#125; is: &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(i,block_chains[i].<span class="hljs-built_in">hash</span>))<br>    i += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> block_chains,i<br></code></pre></td></tr></table></figure>
-
-<p>添加一个简单的验证链合法性的函数，函数分成两个循环，一部分是检查每块的哈希是否被修改；另一部分是检查当前的 blockhead 里前一个节点的哈希和前一个区块是否能对的上</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">is_valid</span>(<span class="hljs-params">chain</span>):<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(chain)):<br>        <span class="hljs-keyword">if</span> chain[i].get_hash() == chain[i].<span class="hljs-built_in">hash</span>:<br>            <span class="hljs-keyword">if</span> chain[i].prev_hash != chain[i-<span class="hljs-number">1</span>].<span class="hljs-built_in">hash</span>:<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
-
-<p>创建主函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Welcome&quot;</span>)<br>    i = <span class="hljs-number">1</span><br>    block_chains = [Block.create_genesis_block()]<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Genesis Block is created.Hash is: &quot;</span>,block_chains[<span class="hljs-number">0</span>].<span class="hljs-built_in">hash</span>)<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        block_chains,i = create_blocks(block_chains,i)<br></code></pre></td></tr></table></figure>
-
+                <h1 id="比特币交易脚本"><a href="#比特币交易脚本" class="headerlink" title="比特币交易脚本"></a>比特币交易脚本</h1><h2 id="P2PK（Pay-to-Public-Key）"><a href="#P2PK（Pay-to-Public-Key）" class="headerlink" title="P2PK（Pay to Public Key）"></a>P2PK（Pay to Public Key）</h2><p>input script:<br>    PUSHDATA(Sig)<br>output script:<br>    PUSHDATA(PubKey)<br>    CHECKSIG</p>
+<ol>
+<li>把输入脚本中的签名压入栈</li>
+<li>把输出中的公钥压入栈</li>
+<li>把栈顶的两个两个元素弹出来，用公钥检查签名是否正确</li>
+<li>正确则返回 TRUE，否则交易非法</li>
+</ol>
+<h2 id="P2PKH（Pay-to-Public-Key-Hash）"><a href="#P2PKH（Pay-to-Public-Key-Hash）" class="headerlink" title="P2PKH（Pay to Public Key Hash）"></a>P2PKH（Pay to Public Key Hash）</h2><p>input script:<br>    PUSHDATA(Sig)<br>    PUSHDATA(PubKey)<br>output script:<br>    DUP<br>    HASH160<br>    PUSHDATA(PubKeyHash)<br>    EQUALVERIFY<br>    CHECKSIG</p>
+<ol>
+<li>把签名压入栈</li>
+<li>把公钥压入栈</li>
+<li>DUP，把栈顶的元素复制一遍压入栈</li>
+<li>HASH160，弹出栈顶值取哈希，再压回栈顶，此时栈顶为公钥的哈希值</li>
+<li>把输出脚本中提供的哈希值压入栈</li>
+<li>EQUALVERIFY，弹出栈顶两个元素，比较是否相等，若相等，两个元素就消失</li>
+<li>此时栈中只剩下 PubKey 和 Sig，把栈顶的两个两个元素弹出来，用公钥检查签名是否正确</li>
+<li>正确则返回 TRUE，否则交易非法</li>
+</ol>
+<h2 id="P2SH（Pay-to-Script-Hash）"><a href="#P2SH（Pay-to-Script-Hash）" class="headerlink" title="P2SH（Pay to Script Hash）"></a>P2SH（Pay to Script Hash）</h2><p>采用 BIP16 方案</p>
+<ul>
+<li>input script 要给出一些签名（数目不定）及一段序列化的 redeemScript（赎回脚本）<ul>
+<li>验证第一步：序列化的 redeemScript 是否与 output script 中的哈希匹配</li>
+<li>反序列化并执行 redeemScript，验证 input script 中给出的签名是否正确</li>
+</ul>
+</li>
+<li>redeemScript 的形式<ul>
+<li>P2PK</li>
+<li>P2PKH</li>
+<li>多重签名形式</li>
+</ul>
+</li>
+</ul>
+<h2 id="用-P2SH-实现-P2PK"><a href="#用-P2SH-实现-P2PK" class="headerlink" title="用 P2SH 实现 P2PK"></a>用 P2SH 实现 P2PK</h2><p><strong>常见应用场景：对多重签名的支持</strong><br><strong>私钥泄露、私钥丢失</strong></p>
+<p>redeemScript：<br>    PUSHDATA（PubKey）<br>    CHECKSIG<br>input script：<br>    PUSHDATA（Sig）<br>    PUSHDATA（serialized redeemScript）<br>output script：<br>    HASH160<br>    PUSHDATA（redeemScriptHash）<br>    EQUAL</p>
+<p>第一阶段：</p>
+<ol>
+<li>把输入脚本的 Sig 压入栈</li>
+<li>取哈希，得到赎回脚本的哈希</li>
+<li>把输出脚本里的哈希压入栈</li>
+<li>使用 EQUAL 进行比较，相等则两个哈希消失，此时只剩下最初的 Sig</li>
+</ol>
+<p>第二阶段：</p>
+<ol>
+<li>把 PubKey 压入栈</li>
+<li>CHECKSIG 进行验证</li>
+<li>验证完成返回 TRUE</li>
+</ol>
+<h2 id="用-P2SH-实现多重签名"><a href="#用-P2SH-实现多重签名" class="headerlink" title="用 P2SH 实现多重签名"></a>用 P2SH 实现多重签名</h2><p><strong>把繁冗从输入脚本转移给输出脚本</strong></p>
+<p>input script:<br>×<br>PUSHDATA（Sig_1）<br>PUSHDATA（Sig_2）<br>…<br>PUSHDATA（Sig_M）<br>PUSHDATA（serialized RedeemScript）<br>output script:<br>HASH160<br>PUSHDATA（RedeemScriptHash）<br>EQUAL</p>
+<p>第一阶段：</p>
+<ol>
+<li>把 FALSE（即×）压入栈</li>
+<li>把 Sig_1 和 Sig_2 两个签名压入栈</li>
+<li>序列化的输入脚本，作为数据压入栈</li>
+<li>序列化输入脚本的数据取哈希</li>
+<li>把输出脚本中提供的哈希压入栈</li>
+<li>EQUAL 判断，TRUE 则两个哈希消失<br>第二阶段：</li>
+<li>把 M 压入栈</li>
+<li>把三个公钥依次压入栈</li>
+<li>把 N 压入栈</li>
+<li>最后检查多重签名的正确性</li>
+</ol>
+<h2 id="Proof-of-Burn"><a href="#Proof-of-Burn" class="headerlink" title="Proof of Burn"></a>Proof of Burn</h2><p>output script:<br>RETURN<br>    [zero or more ops or text]<br>其中 RETURN 的作用是 <code>无条件地返回错误</code>，代码运行到这里就会终止，也就没有办法执行后续内容</p>
+<ul>
+<li>作用：<ul>
+<li>用于 <strong>销毁比特币</strong> 的一种方法</li>
+<li>保护知识产权</li>
+</ul>
+</li>
+</ul>
 
                 
               </div>
@@ -378,8 +429,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>使用python实现简单的区块链</div>
-      <div>http://example.com/2024/07/11/使用python实现简单的区块链/</div>
+      <div>比特币交易脚本</div>
+      <div>http://example.com/2024/07/15/比特币交易脚本/</div>
     </div>
     <div class="license-meta">
       
@@ -391,7 +442,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月11日</div>
+          <div>2024年7月15日</div>
         </div>
       
       
@@ -423,18 +474,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/15/%E6%AF%94%E7%89%B9%E5%B8%81%E4%BA%A4%E6%98%93%E8%84%9A%E6%9C%AC/" title="比特币交易脚本">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">比特币交易脚本</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/13/2024-H&amp;NCTF/" title="2024-H&amp;amp;NCTF">
-                        <span class="hidden-mobile">2024-H&amp;amp;NCTF</span>
+                      <a href="/2024/07/11/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE/" title="使用python实现简单的区块链">
+                        <span class="hidden-mobile">使用python实现简单的区块链</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

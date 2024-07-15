@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>比特币交易脚本</title>
+    <link href="/2024/07/15/%E6%AF%94%E7%89%B9%E5%B8%81%E4%BA%A4%E6%98%93%E8%84%9A%E6%9C%AC/"/>
+    <url>/2024/07/15/%E6%AF%94%E7%89%B9%E5%B8%81%E4%BA%A4%E6%98%93%E8%84%9A%E6%9C%AC/</url>
+    
+    <content type="html"><![CDATA[<h1 id="比特币交易脚本"><a href="#比特币交易脚本" class="headerlink" title="比特币交易脚本"></a>比特币交易脚本</h1><h2 id="P2PK（Pay-to-Public-Key）"><a href="#P2PK（Pay-to-Public-Key）" class="headerlink" title="P2PK（Pay to Public Key）"></a>P2PK（Pay to Public Key）</h2><p>input script:<br>    PUSHDATA(Sig)<br>output script:<br>    PUSHDATA(PubKey)<br>    CHECKSIG</p><ol><li>把输入脚本中的签名压入栈</li><li>把输出中的公钥压入栈</li><li>把栈顶的两个两个元素弹出来，用公钥检查签名是否正确</li><li>正确则返回 TRUE，否则交易非法</li></ol><h2 id="P2PKH（Pay-to-Public-Key-Hash）"><a href="#P2PKH（Pay-to-Public-Key-Hash）" class="headerlink" title="P2PKH（Pay to Public Key Hash）"></a>P2PKH（Pay to Public Key Hash）</h2><p>input script:<br>    PUSHDATA(Sig)<br>    PUSHDATA(PubKey)<br>output script:<br>    DUP<br>    HASH160<br>    PUSHDATA(PubKeyHash)<br>    EQUALVERIFY<br>    CHECKSIG</p><ol><li>把签名压入栈</li><li>把公钥压入栈</li><li>DUP，把栈顶的元素复制一遍压入栈</li><li>HASH160，弹出栈顶值取哈希，再压回栈顶，此时栈顶为公钥的哈希值</li><li>把输出脚本中提供的哈希值压入栈</li><li>EQUALVERIFY，弹出栈顶两个元素，比较是否相等，若相等，两个元素就消失</li><li>此时栈中只剩下 PubKey 和 Sig，把栈顶的两个两个元素弹出来，用公钥检查签名是否正确</li><li>正确则返回 TRUE，否则交易非法</li></ol><h2 id="P2SH（Pay-to-Script-Hash）"><a href="#P2SH（Pay-to-Script-Hash）" class="headerlink" title="P2SH（Pay to Script Hash）"></a>P2SH（Pay to Script Hash）</h2><p>采用 BIP16 方案</p><ul><li>input script 要给出一些签名（数目不定）及一段序列化的 redeemScript（赎回脚本）<ul><li>验证第一步：序列化的 redeemScript 是否与 output script 中的哈希匹配</li><li>反序列化并执行 redeemScript，验证 input script 中给出的签名是否正确</li></ul></li><li>redeemScript 的形式<ul><li>P2PK</li><li>P2PKH</li><li>多重签名形式</li></ul></li></ul><h2 id="用-P2SH-实现-P2PK"><a href="#用-P2SH-实现-P2PK" class="headerlink" title="用 P2SH 实现 P2PK"></a>用 P2SH 实现 P2PK</h2><p><strong>常见应用场景：对多重签名的支持</strong><br><strong>私钥泄露、私钥丢失</strong></p><p>redeemScript：<br>    PUSHDATA（PubKey）<br>    CHECKSIG<br>input script：<br>    PUSHDATA（Sig）<br>    PUSHDATA（serialized redeemScript）<br>output script：<br>    HASH160<br>    PUSHDATA（redeemScriptHash）<br>    EQUAL</p><p>第一阶段：</p><ol><li>把输入脚本的 Sig 压入栈</li><li>取哈希，得到赎回脚本的哈希</li><li>把输出脚本里的哈希压入栈</li><li>使用 EQUAL 进行比较，相等则两个哈希消失，此时只剩下最初的 Sig</li></ol><p>第二阶段：</p><ol><li>把 PubKey 压入栈</li><li>CHECKSIG 进行验证</li><li>验证完成返回 TRUE</li></ol><h2 id="用-P2SH-实现多重签名"><a href="#用-P2SH-实现多重签名" class="headerlink" title="用 P2SH 实现多重签名"></a>用 P2SH 实现多重签名</h2><p><strong>把繁冗从输入脚本转移给输出脚本</strong></p><p>input script:<br>×<br>PUSHDATA（Sig_1）<br>PUSHDATA（Sig_2）<br>…<br>PUSHDATA（Sig_M）<br>PUSHDATA（serialized RedeemScript）<br>output script:<br>HASH160<br>PUSHDATA（RedeemScriptHash）<br>EQUAL</p><p>第一阶段：</p><ol><li>把 FALSE（即×）压入栈</li><li>把 Sig_1 和 Sig_2 两个签名压入栈</li><li>序列化的输入脚本，作为数据压入栈</li><li>序列化输入脚本的数据取哈希</li><li>把输出脚本中提供的哈希压入栈</li><li>EQUAL 判断，TRUE 则两个哈希消失<br>第二阶段：</li><li>把 M 压入栈</li><li>把三个公钥依次压入栈</li><li>把 N 压入栈</li><li>最后检查多重签名的正确性</li></ol><h2 id="Proof-of-Burn"><a href="#Proof-of-Burn" class="headerlink" title="Proof of Burn"></a>Proof of Burn</h2><p>output script:<br>RETURN<br>    [zero or more ops or text]<br>其中 RETURN 的作用是 <code>无条件地返回错误</code>，代码运行到这里就会终止，也就没有办法执行后续内容</p><ul><li>作用：<ul><li>用于 <strong>销毁比特币</strong> 的一种方法</li><li>保护知识产权</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>区块链</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>区块链</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>使用python实现简单的区块链</title>
     <link href="/2024/07/11/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
     <url>/2024/07/11/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE/</url>
