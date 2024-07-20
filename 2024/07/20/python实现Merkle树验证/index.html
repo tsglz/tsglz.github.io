@@ -16,22 +16,22 @@
   <meta name="author" content="Tsglz">
   <meta name="keywords" content="">
   
-    <meta name="description" content="比特币交易脚本P2PK（Pay to Public Key）input script:    PUSHDATA(Sig)output script:    PUSHDATA(PubKey)    CHECKSIG  把输入脚本中的签名压入栈 把输出中的公钥压入栈 把栈顶的两个两个元素弹出来，用公钥检查签名是否正确 正确则返回 TRUE，否则交易非法  P2PKH（Pay to Public Key">
+    <meta name="description" content="python实现Merkle树验证使用 Merkle树 对链是否合法进行验证  呈现少量节点即可证明分支的有效性 任何改变 Merkle 树任何部分的尝试都会导致链上某个地方的不一致   每个节点都是其两个子节点的哈希值  1234567891011121314151617181920import hashlib# 构建Merkle树def build_tree(data):    tree &#x3D;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="比特币交易脚本">
-<meta property="og:url" content="http://example.com/2024/07/15/%E6%AF%94%E7%89%B9%E5%B8%81%E4%BA%A4%E6%98%93%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:title" content="python实现Merkle树验证">
+<meta property="og:url" content="http://example.com/2024/07/20/python%E5%AE%9E%E7%8E%B0Merkle%E6%A0%91%E9%AA%8C%E8%AF%81/index.html">
 <meta property="og:site_name" content="Tsglz的个人博客">
-<meta property="og:description" content="比特币交易脚本P2PK（Pay to Public Key）input script:    PUSHDATA(Sig)output script:    PUSHDATA(PubKey)    CHECKSIG  把输入脚本中的签名压入栈 把输出中的公钥压入栈 把栈顶的两个两个元素弹出来，用公钥检查签名是否正确 正确则返回 TRUE，否则交易非法  P2PKH（Pay to Public Key">
+<meta property="og:description" content="python实现Merkle树验证使用 Merkle树 对链是否合法进行验证  呈现少量节点即可证明分支的有效性 任何改变 Merkle 树任何部分的尝试都会导致链上某个地方的不一致   每个节点都是其两个子节点的哈希值  1234567891011121314151617181920import hashlib# 构建Merkle树def build_tree(data):    tree &#x3D;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-15T14:45:53.000Z">
-<meta property="article:modified_time" content="2024-07-15T14:47:51.752Z">
+<meta property="article:published_time" content="2024-07-20T10:35:42.000Z">
+<meta property="article:modified_time" content="2024-07-20T11:07:00.071Z">
 <meta property="article:author" content="Tsglz">
 <meta property="article:tag" content="区块链">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>比特币交易脚本 - Tsglz的个人博客</title>
+  <title>python实现Merkle树验证 - Tsglz的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +230,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="比特币交易脚本"></span>
+            <span id="subtitle" data-typed-text="python实现Merkle树验证"></span>
           
         </div>
 
@@ -241,8 +241,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-15 22:45" pubdate>
-          2024年7月15日 晚上
+        <time datetime="2024-07-20 18:35" pubdate>
+          2024年7月20日 晚上
         </time>
       </span>
     
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          619 字
+          702 字
         
       </span>
     
@@ -309,81 +309,34 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">比特币交易脚本</h1>
+            <h1 id="seo-header">python实现Merkle树验证</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="比特币交易脚本"><a href="#比特币交易脚本" class="headerlink" title="比特币交易脚本"></a>比特币交易脚本</h1><h2 id="P2PK（Pay-to-Public-Key）"><a href="#P2PK（Pay-to-Public-Key）" class="headerlink" title="P2PK（Pay to Public Key）"></a>P2PK（Pay to Public Key）</h2><p>input script:<br>    PUSHDATA(Sig)<br>output script:<br>    PUSHDATA(PubKey)<br>    CHECKSIG</p>
-<ol>
-<li>把输入脚本中的签名压入栈</li>
-<li>把输出中的公钥压入栈</li>
-<li>把栈顶的两个两个元素弹出来，用公钥检查签名是否正确</li>
-<li>正确则返回 TRUE，否则交易非法</li>
-</ol>
-<h2 id="P2PKH（Pay-to-Public-Key-Hash）"><a href="#P2PKH（Pay-to-Public-Key-Hash）" class="headerlink" title="P2PKH（Pay to Public Key Hash）"></a>P2PKH（Pay to Public Key Hash）</h2><p>input script:<br>    PUSHDATA(Sig)<br>    PUSHDATA(PubKey)<br>output script:<br>    DUP<br>    HASH160<br>    PUSHDATA(PubKeyHash)<br>    EQUALVERIFY<br>    CHECKSIG</p>
-<ol>
-<li>把签名压入栈</li>
-<li>把公钥压入栈</li>
-<li>DUP，把栈顶的元素复制一遍压入栈</li>
-<li>HASH160，弹出栈顶值取哈希，再压回栈顶，此时栈顶为公钥的哈希值</li>
-<li>把输出脚本中提供的哈希值压入栈</li>
-<li>EQUALVERIFY，弹出栈顶两个元素，比较是否相等，若相等，两个元素就消失</li>
-<li>此时栈中只剩下 PubKey 和 Sig，把栈顶的两个两个元素弹出来，用公钥检查签名是否正确</li>
-<li>正确则返回 TRUE，否则交易非法</li>
-</ol>
-<h2 id="P2SH（Pay-to-Script-Hash）"><a href="#P2SH（Pay-to-Script-Hash）" class="headerlink" title="P2SH（Pay to Script Hash）"></a>P2SH（Pay to Script Hash）</h2><p>采用 BIP16 方案</p>
+                <h1 id="python实现Merkle树验证"><a href="#python实现Merkle树验证" class="headerlink" title="python实现Merkle树验证"></a>python实现Merkle树验证</h1><p>使用 Merkle树 对链是否合法进行验证</p>
 <ul>
-<li>input script 要给出一些签名（数目不定）及一段序列化的 redeemScript（赎回脚本）<ul>
-<li>验证第一步：序列化的 redeemScript 是否与 output script 中的哈希匹配</li>
-<li>反序列化并执行 redeemScript，验证 input script 中给出的签名是否正确</li>
+<li>呈现少量节点即可证明分支的有效性<ul>
+<li>任何改变 Merkle 树任何部分的尝试都会导致链上某个地方的不一致</li>
 </ul>
 </li>
-<li>redeemScript 的形式<ul>
-<li>P2PK</li>
-<li>P2PKH</li>
-<li>多重签名形式</li>
+<li>每个节点都是其两个子节点的哈希值</li>
 </ul>
-</li>
-</ul>
-<h2 id="用-P2SH-实现-P2PK"><a href="#用-P2SH-实现-P2PK" class="headerlink" title="用 P2SH 实现 P2PK"></a>用 P2SH 实现 P2PK</h2><p><strong>常见应用场景：对多重签名的支持</strong><br><strong>私钥泄露、私钥丢失</strong></p>
-<p>redeemScript：<br>    PUSHDATA（PubKey）<br>    CHECKSIG<br>input script：<br>    PUSHDATA（Sig）<br>    PUSHDATA（serialized redeemScript）<br>output script：<br>    HASH160<br>    PUSHDATA（redeemScriptHash）<br>    EQUAL</p>
-<p>第一阶段：</p>
-<ol>
-<li>把输入脚本的 Sig 压入栈</li>
-<li>取哈希，得到赎回脚本的哈希</li>
-<li>把输出脚本里的哈希压入栈</li>
-<li>使用 EQUAL 进行比较，相等则两个哈希消失，此时只剩下最初的 Sig</li>
-</ol>
-<p>第二阶段：</p>
-<ol>
-<li>把 PubKey 压入栈</li>
-<li>CHECKSIG 进行验证</li>
-<li>验证完成返回 TRUE</li>
-</ol>
-<h2 id="用-P2SH-实现多重签名"><a href="#用-P2SH-实现多重签名" class="headerlink" title="用 P2SH 实现多重签名"></a>用 P2SH 实现多重签名</h2><p><strong>把繁冗从输入脚本转移给输出脚本</strong></p>
-<p>input script:<br>×<br>PUSHDATA（Sig_1）<br>PUSHDATA（Sig_2）<br>…<br>PUSHDATA（Sig_M）<br>PUSHDATA（serialized RedeemScript）<br>output script:<br>HASH160<br>PUSHDATA（RedeemScriptHash）<br>EQUAL</p>
-<p>第一阶段：</p>
-<ol>
-<li>把 FALSE（即×）压入栈</li>
-<li>把 Sig_1 和 Sig_2 两个签名压入栈</li>
-<li>序列化的输入脚本，作为数据压入栈</li>
-<li>序列化输入脚本的数据取哈希</li>
-<li>把输出脚本中提供的哈希压入栈</li>
-<li>EQUAL 判断，TRUE 则两个哈希消失<br>第二阶段：</li>
-<li>把 M 压入栈</li>
-<li>把三个公钥依次压入栈</li>
-<li>把 N 压入栈</li>
-<li>最后检查多重签名的正确性</li>
-</ol>
-<h2 id="Proof-of-Burn"><a href="#Proof-of-Burn" class="headerlink" title="Proof of Burn"></a>Proof of Burn</h2><p>output script:<br>RETURN<br>    [zero or more ops or text]<br>其中 RETURN 的作用是 <code>无条件地返回错误</code>，代码运行到这里就会终止，也就没有办法执行后续内容</p>
-<ul>
-<li>作用：<ul>
-<li>用于 <strong>销毁比特币</strong> 的一种方法</li>
-<li>保护知识产权</li>
-</ul>
-</li>
-</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hashlib<br><br><span class="hljs-comment"># 构建Merkle树</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">build_tree</span>(<span class="hljs-params">data</span>):<br>    tree = []<br>    <span class="hljs-comment"># 将所有数据块的哈希值存到叶子节点</span><br>    <span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> data:<br>        tree.append(hashlib.sha256(d.encode()).hexdigest())<br>    <span class="hljs-comment"># 逐层生成父节点</span><br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(tree) &gt; <span class="hljs-number">1</span>:<br>        parent_level = []<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(tree), <span class="hljs-number">2</span>):<br>            <span class="hljs-comment"># 如果当前节点只有一个子节点，将其复制一遍作为另一个子节点</span><br>            <span class="hljs-keyword">if</span> i == <span class="hljs-built_in">len</span>(tree) - <span class="hljs-number">1</span>:<br>                parent_level.append(tree[i] + tree[i])<br>            <span class="hljs-keyword">else</span>:<br>                parent_level.append(tree[i] + tree[i+<span class="hljs-number">1</span>])<br>        <span class="hljs-comment"># 将当前层的父节点加入树中</span><br>        tree = parent_level<br>    <span class="hljs-keyword">return</span> tree[<span class="hljs-number">0</span>]<br></code></pre></td></tr></table></figure>
+
+<p>添加验证数据的完整性的函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 验证数据完整性</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">validate</span>(<span class="hljs-params"><span class="hljs-built_in">hash</span>, data</span>):<br>    <span class="hljs-comment"># 如果当前节点是叶子节点，直接与数据块的哈希比较</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(<span class="hljs-built_in">hash</span>) == <span class="hljs-number">64</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">hash</span> == hashlib.sha256(data.encode()).hexdigest()<br>    <span class="hljs-comment"># 如果当前节点是父节点，递归验证子节点</span><br>    left = <span class="hljs-built_in">hash</span>[<span class="hljs-number">0</span>:<span class="hljs-number">64</span>]<br>    right = <span class="hljs-built_in">hash</span>[<span class="hljs-number">64</span>:]<br>    <span class="hljs-keyword">return</span> validate(left, data) <span class="hljs-keyword">or</span> validate(right, data)<br></code></pre></td></tr></table></figure>
+
+<p>主函数中添加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> Merkel_Tree<br></code></pre></td></tr></table></figure>
+
+<p>对 <code>create_blocks</code> 函数进行补充：除了补充注释以外新增了 <code>ret_hash</code> 变量，用于填充 Merkle树 的列表</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_blocks</span>(<span class="hljs-params">block_chains,i</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Input the transaction information for block &#123;&#125;:&quot;</span>.<span class="hljs-built_in">format</span>(i))<br>    <span class="hljs-comment"># 提示输入交易信息</span><br>    <br>    input_sender = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the sender:&quot;</span>)    <span class="hljs-comment">#输入发送者</span><br>    input_receiver = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the receiver:&quot;</span>)    <span class="hljs-comment">#输入接收者</span><br>    input_amount = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the amount:&quot;</span>)    <span class="hljs-comment">#输入金额</span><br>    <br>    transaction = &#123;<span class="hljs-string">&quot;sender&quot;</span>:input_sender,<span class="hljs-string">&quot;receiver&quot;</span>:input_receiver,<span class="hljs-string">&quot;amount&quot;</span>:input_amount&#125;<br>    <br>    block_chains.append(Block(block_chains[i-<span class="hljs-number">1</span>].<span class="hljs-built_in">hash</span>, transaction , datetime.datetime.now()))<br>    <span class="hljs-comment"># 前一个区块的哈希，交易信息，时间戳</span><br>    <br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Block &#123;&#125; is created, and the transaction is: &#123;&#125; transfer &#123;&#125; BTC to &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(i,input_sender,input_amount,input_receiver))<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The hash of block &#123;&#125; is: &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(i,block_chains[i].<span class="hljs-built_in">hash</span>))<br>    ret_hash = block_chains[i].get_hash()<br>    i += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> block_chains,i,ret_hash<br></code></pre></td></tr></table></figure>
+
+<p>同时对主函数进行扩充：补充了一些注释，同时在初始化中添加了 <code>Merkel树 的初始数据</code> 以及 <code>根节点</code> 。此外，添加了分支选项来进行操作选择，选择内容包括 <code>创建新区块</code> 和 <code>检查区块链的有效性</code></p>
+<p>如果是 <code>创建新区块</code>，每次都要更新 Merkel树 的数据并且再次计算根节点，算出 root 以供验证</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Welcome&quot;</span>)<br>    <br>    <span class="hljs-comment">#初始化</span><br>    i = <span class="hljs-number">1</span><br>    block_chains = [Block.create_genesis_block()]<br>    merkel_data = [block_chains[<span class="hljs-number">0</span>].<span class="hljs-built_in">hash</span>]        <span class="hljs-comment"># 创建 Merkel树 的初始数据</span><br>    root_hash = Merkel_Tree.build_tree(merkel_data)     <span class="hljs-comment">#根节点</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Genesis Block is created.Hash is: &quot;</span>,block_chains[<span class="hljs-number">0</span>].<span class="hljs-built_in">hash</span>)<br>    <br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Please choose the operation:&quot;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;1.Create a new block&quot;</span>)       <span class="hljs-comment">#创建新区块</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;2.Check the validity of the chain&quot;</span>)   <span class="hljs-comment">#检查区块链的有效性</span><br>		<br>        <span class="hljs-comment">#输入选择</span><br>        input_choice = <span class="hljs-built_in">input</span>()<br>        <br>        <span class="hljs-keyword">if</span> input_choice == <span class="hljs-string">&quot;1&quot;</span>:<br>            block_chains,i,ret_hash = create_blocks(block_chains,i)  <span class="hljs-comment">#创建新区块</span><br>            merkel_data.append(ret_hash)     <span class="hljs-comment">#更新 Merkel树 的数据</span><br>            root_hash = Merkel_Tree.build_tree(merkel_data)     <span class="hljs-comment">#再次计算根节点</span><br>        <span class="hljs-keyword">elif</span> input_choice == <span class="hljs-string">&quot;2&quot;</span>:       <span class="hljs-comment">#检查区块链的有效性，通过检查最后一个区块的哈希来实现</span><br>            <span class="hljs-keyword">if</span> Merkel_Tree.validate(root_hash,merkel_data[-<span class="hljs-number">1</span>]):<br>                <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The chain is valid&quot;</span>)<br>            <span class="hljs-keyword">else</span>:<br>                <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The chain is invalid&quot;</span>)<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -429,8 +382,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>比特币交易脚本</div>
-      <div>http://example.com/2024/07/15/比特币交易脚本/</div>
+      <div>python实现Merkle树验证</div>
+      <div>http://example.com/2024/07/20/python实现Merkle树验证/</div>
     </div>
     <div class="license-meta">
       
@@ -442,7 +395,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月15日</div>
+          <div>2024年7月20日</div>
         </div>
       
       
@@ -474,18 +427,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/07/20/python%E5%AE%9E%E7%8E%B0Merkle%E6%A0%91%E9%AA%8C%E8%AF%81/" title="python实现Merkle树验证">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">python实现Merkle树验证</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/11/%E4%BD%BF%E7%94%A8python%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE/" title="使用python实现简单的区块链">
-                        <span class="hidden-mobile">使用python实现简单的区块链</span>
+                      <a href="/2024/07/15/%E6%AF%94%E7%89%B9%E5%B8%81%E4%BA%A4%E6%98%93%E8%84%9A%E6%9C%AC/" title="比特币交易脚本">
+                        <span class="hidden-mobile">比特币交易脚本</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
