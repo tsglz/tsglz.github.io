@@ -16,22 +16,28 @@
   <meta name="author" content="Tsglz">
   <meta name="keywords" content="">
   
-    <meta name="description" content="python实现Merkle树验证使用 Merkle树 对链是否合法进行验证  呈现少量节点即可证明分支的有效性 任何改变 Merkle 树任何部分的尝试都会导致链上某个地方的不一致   每个节点都是其两个子节点的哈希值  1234567891011121314151617181920import hashlib# 构建Merkle树def build_tree(data):    tree &#x3D;">
+    <meta name="description" content="计算机使用基础知识应邀给新人写的一写注意事项，如果有任何疑问，欢迎给我发邮件询问 一、为什么不能把软件都装在C盘系统性能：C盘作为系统盘（通常是Windows的主分区），承载了操作系统和许多系统文件。随着使用时间的推移，C盘会积累大量的临时文件、缓存数据以及系统日志等，这会导致磁盘空间逐渐减少，进而影响系统的运行速度和稳定性。此外，当C盘空间不足时，系统可能会频繁进行磁盘碎片整理，进一步降低工作效">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python实现Merkle树验证">
-<meta property="og:url" content="http://example.com/2024/07/20/python%E5%AE%9E%E7%8E%B0Merkle%E6%A0%91%E9%AA%8C%E8%AF%81/index.html">
+<meta property="og:title" content="计算机使用基础知识">
+<meta property="og:url" content="http://example.com/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="Tsglz的个人博客">
-<meta property="og:description" content="python实现Merkle树验证使用 Merkle树 对链是否合法进行验证  呈现少量节点即可证明分支的有效性 任何改变 Merkle 树任何部分的尝试都会导致链上某个地方的不一致   每个节点都是其两个子节点的哈希值  1234567891011121314151617181920import hashlib# 构建Merkle树def build_tree(data):    tree &#x3D;">
+<meta property="og:description" content="计算机使用基础知识应邀给新人写的一写注意事项，如果有任何疑问，欢迎给我发邮件询问 一、为什么不能把软件都装在C盘系统性能：C盘作为系统盘（通常是Windows的主分区），承载了操作系统和许多系统文件。随着使用时间的推移，C盘会积累大量的临时文件、缓存数据以及系统日志等，这会导致磁盘空间逐渐减少，进而影响系统的运行速度和稳定性。此外，当C盘空间不足时，系统可能会频繁进行磁盘碎片整理，进一步降低工作效">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-20T10:35:42.000Z">
-<meta property="article:modified_time" content="2024-07-20T11:07:00.071Z">
+<meta property="og:image" content="http://example.com/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/win+r.png">
+<meta property="og:image" content="http://example.com/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/uninstall.png">
+<meta property="og:image" content="http://example.com/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/huorong.png">
+<meta property="og:image" content="http://example.com/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/download.png">
+<meta property="og:image" content="http://example.com/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/houzhui.png">
+<meta property="article:published_time" content="2024-08-05T12:46:38.000Z">
+<meta property="article:modified_time" content="2024-08-05T12:53:42.640Z">
 <meta property="article:author" content="Tsglz">
-<meta property="article:tag" content="区块链">
+<meta property="article:tag" content="环境配置">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/win+r.png">
   
   
   
-  <title>python实现Merkle树验证 - Tsglz的个人博客</title>
+  <title>计算机使用基础知识 - Tsglz的个人博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -230,7 +236,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="python实现Merkle树验证"></span>
+            <span id="subtitle" data-typed-text="计算机使用基础知识"></span>
           
         </div>
 
@@ -241,8 +247,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-07-20 18:35" pubdate>
-          2024年7月20日 晚上
+        <time datetime="2024-08-05 20:46" pubdate>
+          2024年8月5日 晚上
         </time>
       </span>
     
@@ -253,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          702 字
+          1.4k 字
         
       </span>
     
@@ -264,7 +270,7 @@
         
         
         
-          6 分钟
+          12 分钟
         
       </span>
     
@@ -309,34 +315,32 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">python实现Merkle树验证</h1>
+            <h1 id="seo-header">计算机使用基础知识</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="python实现Merkle树验证"><a href="#python实现Merkle树验证" class="headerlink" title="python实现Merkle树验证"></a>python实现Merkle树验证</h1><p>使用 Merkle树 对链是否合法进行验证</p>
-<ul>
-<li>呈现少量节点即可证明分支的有效性<ul>
-<li>任何改变 Merkle 树任何部分的尝试都会导致链上某个地方的不一致</li>
-</ul>
-</li>
-<li>每个节点都是其两个子节点的哈希值</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> hashlib<br><br><span class="hljs-comment"># 构建Merkle树</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">build_tree</span>(<span class="hljs-params">data</span>):<br>    tree = []<br>    <span class="hljs-comment"># 将所有数据块的哈希值存到叶子节点</span><br>    <span class="hljs-keyword">for</span> d <span class="hljs-keyword">in</span> data:<br>        tree.append(hashlib.sha256(d.encode()).hexdigest())<br>    <span class="hljs-comment"># 逐层生成父节点</span><br>    <span class="hljs-keyword">while</span> <span class="hljs-built_in">len</span>(tree) &gt; <span class="hljs-number">1</span>:<br>        parent_level = []<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(tree), <span class="hljs-number">2</span>):<br>            <span class="hljs-comment"># 如果当前节点只有一个子节点，将其复制一遍作为另一个子节点</span><br>            <span class="hljs-keyword">if</span> i == <span class="hljs-built_in">len</span>(tree) - <span class="hljs-number">1</span>:<br>                parent_level.append(tree[i] + tree[i])<br>            <span class="hljs-keyword">else</span>:<br>                parent_level.append(tree[i] + tree[i+<span class="hljs-number">1</span>])<br>        <span class="hljs-comment"># 将当前层的父节点加入树中</span><br>        tree = parent_level<br>    <span class="hljs-keyword">return</span> tree[<span class="hljs-number">0</span>]<br></code></pre></td></tr></table></figure>
-
-<p>添加验证数据的完整性的函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 验证数据完整性</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">validate</span>(<span class="hljs-params"><span class="hljs-built_in">hash</span>, data</span>):<br>    <span class="hljs-comment"># 如果当前节点是叶子节点，直接与数据块的哈希比较</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(<span class="hljs-built_in">hash</span>) == <span class="hljs-number">64</span>:<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">hash</span> == hashlib.sha256(data.encode()).hexdigest()<br>    <span class="hljs-comment"># 如果当前节点是父节点，递归验证子节点</span><br>    left = <span class="hljs-built_in">hash</span>[<span class="hljs-number">0</span>:<span class="hljs-number">64</span>]<br>    right = <span class="hljs-built_in">hash</span>[<span class="hljs-number">64</span>:]<br>    <span class="hljs-keyword">return</span> validate(left, data) <span class="hljs-keyword">or</span> validate(right, data)<br></code></pre></td></tr></table></figure>
-
-<p>主函数中添加</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> Merkel_Tree<br></code></pre></td></tr></table></figure>
-
-<p>对 <code>create_blocks</code> 函数进行补充：除了补充注释以外新增了 <code>ret_hash</code> 变量，用于填充 Merkle树 的列表</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">create_blocks</span>(<span class="hljs-params">block_chains,i</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Input the transaction information for block &#123;&#125;:&quot;</span>.<span class="hljs-built_in">format</span>(i))<br>    <span class="hljs-comment"># 提示输入交易信息</span><br>    <br>    input_sender = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the sender:&quot;</span>)    <span class="hljs-comment">#输入发送者</span><br>    input_receiver = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the receiver:&quot;</span>)    <span class="hljs-comment">#输入接收者</span><br>    input_amount = <span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;Please input the amount:&quot;</span>)    <span class="hljs-comment">#输入金额</span><br>    <br>    transaction = &#123;<span class="hljs-string">&quot;sender&quot;</span>:input_sender,<span class="hljs-string">&quot;receiver&quot;</span>:input_receiver,<span class="hljs-string">&quot;amount&quot;</span>:input_amount&#125;<br>    <br>    block_chains.append(Block(block_chains[i-<span class="hljs-number">1</span>].<span class="hljs-built_in">hash</span>, transaction , datetime.datetime.now()))<br>    <span class="hljs-comment"># 前一个区块的哈希，交易信息，时间戳</span><br>    <br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Block &#123;&#125; is created, and the transaction is: &#123;&#125; transfer &#123;&#125; BTC to &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(i,input_sender,input_amount,input_receiver))<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The hash of block &#123;&#125; is: &#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(i,block_chains[i].<span class="hljs-built_in">hash</span>))<br>    ret_hash = block_chains[i].get_hash()<br>    i += <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> block_chains,i,ret_hash<br></code></pre></td></tr></table></figure>
-
-<p>同时对主函数进行扩充：补充了一些注释，同时在初始化中添加了 <code>Merkel树 的初始数据</code> 以及 <code>根节点</code> 。此外，添加了分支选项来进行操作选择，选择内容包括 <code>创建新区块</code> 和 <code>检查区块链的有效性</code></p>
-<p>如果是 <code>创建新区块</code>，每次都要更新 Merkel树 的数据并且再次计算根节点，算出 root 以供验证</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Welcome&quot;</span>)<br>    <br>    <span class="hljs-comment">#初始化</span><br>    i = <span class="hljs-number">1</span><br>    block_chains = [Block.create_genesis_block()]<br>    merkel_data = [block_chains[<span class="hljs-number">0</span>].<span class="hljs-built_in">hash</span>]        <span class="hljs-comment"># 创建 Merkel树 的初始数据</span><br>    root_hash = Merkel_Tree.build_tree(merkel_data)     <span class="hljs-comment">#根节点</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Genesis Block is created.Hash is: &quot;</span>,block_chains[<span class="hljs-number">0</span>].<span class="hljs-built_in">hash</span>)<br>    <br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Please choose the operation:&quot;</span>)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;1.Create a new block&quot;</span>)       <span class="hljs-comment">#创建新区块</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;2.Check the validity of the chain&quot;</span>)   <span class="hljs-comment">#检查区块链的有效性</span><br>		<br>        <span class="hljs-comment">#输入选择</span><br>        input_choice = <span class="hljs-built_in">input</span>()<br>        <br>        <span class="hljs-keyword">if</span> input_choice == <span class="hljs-string">&quot;1&quot;</span>:<br>            block_chains,i,ret_hash = create_blocks(block_chains,i)  <span class="hljs-comment">#创建新区块</span><br>            merkel_data.append(ret_hash)     <span class="hljs-comment">#更新 Merkel树 的数据</span><br>            root_hash = Merkel_Tree.build_tree(merkel_data)     <span class="hljs-comment">#再次计算根节点</span><br>        <span class="hljs-keyword">elif</span> input_choice == <span class="hljs-string">&quot;2&quot;</span>:       <span class="hljs-comment">#检查区块链的有效性，通过检查最后一个区块的哈希来实现</span><br>            <span class="hljs-keyword">if</span> Merkel_Tree.validate(root_hash,merkel_data[-<span class="hljs-number">1</span>]):<br>                <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The chain is valid&quot;</span>)<br>            <span class="hljs-keyword">else</span>:<br>                <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;The chain is invalid&quot;</span>)<br></code></pre></td></tr></table></figure>
-
+                <h1 id="计算机使用基础知识"><a href="#计算机使用基础知识" class="headerlink" title="计算机使用基础知识"></a>计算机使用基础知识</h1><p>应邀给新人写的一写注意事项，如果有任何疑问，欢迎给我发邮件询问</p>
+<h2 id="一、为什么不能把软件都装在C盘"><a href="#一、为什么不能把软件都装在C盘" class="headerlink" title="一、为什么不能把软件都装在C盘"></a>一、为什么不能把软件都装在C盘</h2><p><strong>系统性能</strong>：C盘作为系统盘（通常是Windows的主分区），承载了操作系统和许多系统文件。随着使用时间的推移，C盘会积累大量的<strong>临时文件、缓存数据以及系统日志等</strong>，这会导致磁盘空间逐渐减少，进而影响系统的运行速度和稳定性。此外，当C盘空间不足时，系统可能会频繁进行磁盘碎片整理，进一步降低工作效率。</p>
+<p><strong>存储管理</strong>：虽然可以通过一些工具或设置来优化C盘的空间使用，但这些方法往往比较复杂且不总是有效。例如，通过磁盘管理合并分区或扩展分区可以释放一些空间，但这需要一定的技术知识，并且操作不当还可能带来风险。另外，有些用户尝试将新软件安装到其他分区以减轻C盘负担，但这一过程通常较为麻烦，需要手动修改注册表和快捷方式等。</p>
+<p><strong>权限限制</strong>：C盘通常受到严格的权限控制。普通用户没有足够的权限直接修改C盘中的文件和目录，这使得即使想将软件安装到其他分区也面临困难。此外，某些情况下，系统会自动限制对C盘的写入操作，以防止误操作导致系统崩溃。</p>
+<p>因此，为了确保计算机的高效运行和数据的安全性，建议将非系统相关的软件和数据安装在其他分区，如D盘或E盘。这样不仅可以避免因C盘空间不足而影响系统性能，还可以简化存储管理和权限设置的工作</p>
+<h2 id="二、C盘满了怎么办"><a href="#二、C盘满了怎么办" class="headerlink" title="二、C盘满了怎么办"></a>二、C盘满了怎么办</h2><p>第一，可以通过市面上的 C盘清理工具 进行清理，但这大多数是付费的</p>
+<p>第二，把不必要的软件都通过特定软件进行迁移，迁到其它盘。你可以给不同的盘不同的定位，比如 D盘 放软件，E盘 放个人文件或者游戏之类的</p>
+<p>第三，及时清理你的 回收站和临时文件，通过输入 win+r 打开。</p>
+<p><img src="/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/win+r.png" srcset="/img/loading.gif" lazyload alt="win+r"></p>
+<p>然后输入 <code>%TEMP%</code>，把能删的删了，不能删的跳过</p>
+<h2 id="我的电脑被-360-入侵了怎么办"><a href="#我的电脑被-360-入侵了怎么办" class="headerlink" title="我的电脑被 360 入侵了怎么办"></a>我的电脑被 360 入侵了怎么办</h2><p>众所周知，360 有强大的杀毒功能，同样的，它和病毒一样顽固。如果你的电脑无故多出了 360：<br>首先，打开快捷方式所在的文件夹，待用<br>接着，打开控制面板。方法不限，你可以 win+r，然后输入 control 回车<br>然后，选择卸载程序，搜索360，把有关文件都卸载</p>
+<p><img src="/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/uninstall.png" srcset="/img/loading.gif" lazyload alt="uninstall"></p>
+<p>接着卸载360卫士，不管它怎么说，都选卸载<br>最后，在 C:\Program Files (x86)\360\360Safe 中，把残存的文件都删除，如果提示被占用，首先检查是否已经把它彻底退出。如果已经彻底退出，可以使用火绒，火绒支持解除占用的功能</p>
+<p><img src="/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/huorong.png" srcset="/img/loading.gif" lazyload alt="huorong"></p>
+<h2 id="我的电脑太长时间不关机卡了"><a href="#我的电脑太长时间不关机卡了" class="headerlink" title="我的电脑太长时间不关机卡了"></a>我的电脑太长时间不关机卡了</h2><p>这是正常现象，长期处于开机状态会导致许多进程在后台运行。如果不能保证自己能及时手动关闭这些进程，请定时关机（一天一次或者两天一次）<br>同样，太频繁的开关机也会损害电脑使用寿命（它可能会蓝屏：( 给你抗议一下）</p>
+<h2 id="刚下载的文件怎么不见了"><a href="#刚下载的文件怎么不见了" class="headerlink" title="刚下载的文件怎么不见了"></a>刚下载的文件怎么不见了</h2><p>如果你是在浏览器下载，那么像下图一样打开即可，下载好的文件后面会有个文件夹图标，点开即可看到它的位置。<br>如果你没有进行额外的配置的话，它大概率会在 C盘的Downloads下，你可以直接打开看看它在不在</p>
+<p><img src="/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/download.png" srcset="/img/loading.gif" lazyload alt="download"></p>
+<h2 id="为什么我的文件看不到后缀"><a href="#为什么我的文件看不到后缀" class="headerlink" title="为什么我的文件看不到后缀"></a>为什么我的文件看不到后缀</h2><p>这可能是新手常见的问题，这里我以 win11 为例，展示怎么显示拓展名，首先打开任意一个文件夹，接着，跟着图中标注的顺序进行点击即可</p>
+<p><img src="/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/houzhui.png" srcset="/img/loading.gif" lazyload alt="houzhui"></p>
+<h2 id="这个后缀的文件我没见过打不开怎么办"><a href="#这个后缀的文件我没见过打不开怎么办" class="headerlink" title="这个后缀的文件我没见过打不开怎么办"></a>这个后缀的文件我没见过打不开怎么办</h2><p>这种情况其实并不少见，很多时候我们需要借助搜索引擎来解决问题<br>这个时候，打开你的 Bing &#x2F; Google &#x2F; Firefox &#x2F; 实在没有百度凑活一下也行，输入“xxx后缀 怎么打开” 即可，这个时候可能会给你推荐 某种解析器&#x2F;阅读器 之类的，你唯一需要做的，就是再查一查它正不正经，会不会给你的电脑带来不可预估的风险（如果可以，找正版或者有官方许可的软件），然后把它下载下来</p>
+<h2 id="我不希望我的电脑中毒"><a href="#我不希望我的电脑中毒" class="headerlink" title="我不希望我的电脑中毒"></a>我不希望我的电脑中毒</h2><p>性价比最高的：火绒，不要钱，能杀掉市面上大部分木马<br>此外，如果你是初学者，我并不建议你把 windows defender 关了（默认是开启的），尽管它有时候可能会对你正常运行的软件痛下杀手（极小概率），但相信我，这是为了保护你的电脑，请给它一些容忍</p>
 
                 
               </div>
@@ -355,7 +359,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%8C%BA%E5%9D%97%E9%93%BE/" class="category-chain-item">区块链</a>
+  <a href="/categories/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="category-chain-item">环境配置</a>
   
   
 
@@ -370,7 +374,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" class="print-no-link">#区块链</a>
+        <a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="print-no-link">#环境配置</a>
       
     </div>
   
@@ -382,8 +386,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>python实现Merkle树验证</div>
-      <div>http://example.com/2024/07/20/python实现Merkle树验证/</div>
+      <div>计算机使用基础知识</div>
+      <div>http://example.com/2024/08/05/计算机使用基础知识/</div>
     </div>
     <div class="license-meta">
       
@@ -395,7 +399,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年7月20日</div>
+          <div>2024年8月5日</div>
         </div>
       
       
@@ -427,18 +431,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/08/05/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%BF%E7%94%A8%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="计算机使用基础知识">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">计算机使用基础知识</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/07/15/%E6%AF%94%E7%89%B9%E5%B8%81%E4%BA%A4%E6%98%93%E8%84%9A%E6%9C%AC/" title="比特币交易脚本">
-                        <span class="hidden-mobile">比特币交易脚本</span>
+                      <a href="/2024/07/20/python%E5%AE%9E%E7%8E%B0Merkle%E6%A0%91%E9%AA%8C%E8%AF%81/" title="python实现Merkle树验证">
+                        <span class="hidden-mobile">python实现Merkle树验证</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
