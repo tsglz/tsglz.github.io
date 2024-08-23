@@ -862,11 +862,11 @@ i.iconfont {
   }
   :root:not([data-user-color-scheme]) {
     --body-bg-color: rgb(24, 28, 39);
-    --board-bg-color: rgba(25, 58, 75, 0.3);
+    --board-bg-color: rgba(115, 114, 121, 0.4);
     --text-color: #c4c6c9;
     --sec-text-color: #cecece;
-    --post-text-color: #c4c6c9;
-    --post-heading-color: #c4c6c9;
+    --post-text-color: #c3ce6b;
+    --post-heading-color: #bbd7e8;
     --post-link-color: #b7f497;
     --link-hover-color: #30a9de;
     --link-hover-bg-color: #364151;
@@ -900,11 +900,11 @@ i.iconfont {
 @media not print {
   [data-user-color-scheme="dark"] {
     --body-bg-color: rgb(24, 28, 39);
-    --board-bg-color: rgba(25, 58, 75, 0.3);
+    --board-bg-color: rgba(115, 114, 121, 0.4);
     --text-color: #c4c6c9;
     --sec-text-color: #cecece;
-    --post-text-color: #c4c6c9;
-    --post-heading-color: #c4c6c9;
+    --post-text-color: #c3ce6b;
+    --post-heading-color: #bbd7e8;
     --post-link-color: #b7f497;
     --link-hover-color: #30a9de;
     --link-hover-bg-color: #364151;
