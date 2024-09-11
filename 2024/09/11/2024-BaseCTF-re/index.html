@@ -1,0 +1,833 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#062127">
+  <meta name="author" content="Tsglz">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2024_BaseCTF[Week1] You are good at IDA首先打开 IDA，用 F5 看一眼，OK，可以看到红圈里的第一段 flag，根据提示，应该是有3段 flag。打开字符串看一眼并没有发现 IDA 找到字符串，猜测是通过 section 处理  好，直接看它的汇编内容部分，一眼 flag，点击就送 以下是第二、第三段，整合一下就好   1BaseCTF&amp;#123;Y0u_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024_BaseCTF_re">
+<meta property="og:url" content="http://example.com/2024/09/11/2024-BaseCTF-re/index.html">
+<meta property="og:site_name" content="Tsglz的个人博客">
+<meta property="og:description" content="2024_BaseCTF[Week1] You are good at IDA首先打开 IDA，用 F5 看一眼，OK，可以看到红圈里的第一段 flag，根据提示，应该是有3段 flag。打开字符串看一眼并没有发现 IDA 找到字符串，猜测是通过 section 处理  好，直接看它的汇编内容部分，一眼 flag，点击就送 以下是第二、第三段，整合一下就好   1BaseCTF&amp;#123;Y0u_">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/w1_goodatIDA.png">
+<meta property="og:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/part_2.png">
+<meta property="og:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/part_3.png">
+<meta property="og:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/DIE.png">
+<meta property="og:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/tuoke.png">
+<meta property="og:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/ida_aft_tuoke.png">
+<meta property="og:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/ida_main.png">
+<meta property="og:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/p2.png">
+<meta property="og:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/p2.png">
+<meta property="og:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/p3.png">
+<meta property="og:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/key.png">
+<meta property="article:published_time" content="2024-09-11T01:57:35.000Z">
+<meta property="article:modified_time" content="2024-09-11T02:25:10.321Z">
+<meta property="article:author" content="Tsglz">
+<meta property="article:tag" content="CTF_wps">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/09/11/2024-BaseCTF-re/w1_goodatIDA.png">
+  
+  
+  
+  <title>2024_BaseCTF_re - Tsglz的个人博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/xm_custom/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zNrmNFsImLSaeQ3rCZCp6oql-MdYXbMMI","app_key":"bTNSsMDqV7KWgjR3rQ7NeAs2","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Tsglz的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/null') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2024_BaseCTF_re"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-11 09:57" pubdate>
+          2024年9月11日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> times
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2024_BaseCTF_re</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="2024-BaseCTF"><a href="#2024-BaseCTF" class="headerlink" title="2024_BaseCTF"></a>2024_BaseCTF</h1><h2 id="Week1-You-are-good-at-IDA"><a href="#Week1-You-are-good-at-IDA" class="headerlink" title="[Week1] You are good at IDA"></a>[Week1] You are good at IDA</h2><p>首先打开 IDA，用 F5 看一眼，OK，可以看到红圈里的第一段 flag，根据提示，应该是有3段 flag。打开字符串看一眼并没有发现 IDA 找到字符串，猜测是通过 section 处理</p>
+<p><img src="/2024/09/11/2024-BaseCTF-re/w1_goodatIDA.png" srcset="/img/loading.gif" lazyload alt="w1_goodatIDA"></p>
+<p>好，直接看它的汇编内容部分，一眼 flag，点击就送</p>
+<p>以下是第二、第三段，整合一下就好</p>
+<p><img src="/2024/09/11/2024-BaseCTF-re/part_2.png" srcset="/img/loading.gif" lazyload alt="part_2"></p>
+<p><img src="/2024/09/11/2024-BaseCTF-re/part_3.png" srcset="/img/loading.gif" lazyload alt="part_3"></p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">BaseCTF</span><span class="hljs-template-variable">&#123;Y0u_4Re_900d_47_id4&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Week1-UPX-mini"><a href="#Week1-UPX-mini" class="headerlink" title="[Week1] UPX mini"></a>[Week1] UPX mini</h2><p>OK，标题就有一个明显的提示，用了 UPX 壳，让它进 DIE 过一圈。可以看到 64 位+UPX，IDA 走起</p>
+<p><img src="/2024/09/11/2024-BaseCTF-re/DIE.png" srcset="/img/loading.gif" lazyload alt="DIE"></p>
+<p>哦，不好意思忘记脱壳了</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">upx <span class="hljs-literal">-d</span> 文件名<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2024/09/11/2024-BaseCTF-re/tuoke.png" srcset="/img/loading.gif" lazyload alt="tuoke"></p>
+<p>好了现在可以放心的打开 IDA 了，看看它说了什么。好极了，除了黄字部分全是废话。把黄字单独拎出来看下</p>
+<p><img src="/2024/09/11/2024-BaseCTF-re/ida_aft_tuoke.png" srcset="/img/loading.gif" lazyload alt="ida_aft_tuoke"></p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">QmFzZUNURntIYXYzX0BfZzBvZF90MW0zISEhfQ</span><span class="hljs-operator">=</span><span class="hljs-operator">=</span><br></code></pre></td></tr></table></figure>
+
+<p>一眼 base64，这么明显的等号，小工具秒了</p>
+<figure class="highlight erlang-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs erlang-repl">BaseCTF&#123;Hav3_@_g0od_t1m3!!!&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Week1-Base"><a href="#Week1-Base" class="headerlink" title="[Week1] Base"></a>[Week1] Base</h2><p>蹭一道 misc 的题目，首先看题干，提示是 base</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-attribute">KFWUM6S2KVHFKUTOOQZVUVCGNJGUOMLMLAZVE5SYGJETAYZSKZVGIR22HE</span><span class="hljs-operator">=</span><span class="hljs-operator">=</span><span class="hljs-operator">=</span><span class="hljs-operator">=</span><span class="hljs-operator">=</span><span class="hljs-operator">=</span><br></code></pre></td></tr></table></figure>
+
+<p>直接丢到小工具里试，第一个 base36</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">QmFzZU<span class="hljs-symbol">NURnt3</span>ZTFjM<span class="hljs-name">G1</span>lX<span class="hljs-number">3</span>RvX<span class="hljs-number">2</span>I<span class="hljs-number">0</span>c<span class="hljs-number">2</span>VjdGZ<span class="hljs-number">9</span><br></code></pre></td></tr></table></figure>
+
+<p>看起来还有一个加密，尝试出来 base64</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">BaseCTF</span><span class="hljs-template-variable">&#123;we1c0me_to_b4sectf&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Week1-BasePlus"><a href="#Week1-BasePlus" class="headerlink" title="[Week1] BasePlus"></a>[Week1] BasePlus</h2><p>首先查壳，64位，没壳</p>
+<p>进 IDA 看到经过加密之后验证字符串，所以只要解密字符串就行</p>
+<p><img src="/2024/09/11/2024-BaseCTF-re/ida_main.png" srcset="/img/loading.gif" lazyload alt="ida_main"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">lvfzBiZiOw7&lt;lhF8dDOfEbmI]<span class="hljs-selector-tag">i</span><span class="hljs-keyword">@bdcZfEc</span>^z&gt;aD!<br></code></pre></td></tr></table></figure>
+
+<p>打开 Encode 看看怎么事儿。嚯，还挺长，把它拆分一下进行分析</p>
+<p><img src="/2024/09/11/2024-BaseCTF-re/p2.png" srcset="/img/loading.gif" lazyload alt="p1"></p>
+<p><img src="/2024/09/11/2024-BaseCTF-re/p2.png" srcset="/img/loading.gif" lazyload alt="p2"></p>
+<p><img src="/2024/09/11/2024-BaseCTF-re/p3.png" srcset="/img/loading.gif" lazyload alt="p3"></p>
+<p>大概就是这三部分，接下来按照这个写一个解密脚本吧</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">decode</span>(<span class="hljs-params">encoded_str, secret</span>):<br>    output = []<br>    encoded_len = <span class="hljs-built_in">len</span>(encoded_str)<br>    <br>    i = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> i &lt; encoded_len:<br>        <span class="hljs-comment"># 每 4 个字符一组进行解密</span><br>        block = [<span class="hljs-number">0</span>] * <span class="hljs-number">4</span><br>        <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">4</span>):<br>            <span class="hljs-keyword">if</span> i &lt; encoded_len:<br>                <span class="hljs-comment"># 逆向异或操作</span><br>                block[j] = <span class="hljs-built_in">ord</span>(encoded_str[i]) ^ <span class="hljs-number">0xE</span><br>                i += <span class="hljs-number">1</span><br>        <br>        <span class="hljs-comment"># 逆向字符映射：找到 secret 中字符的位置</span><br>        decoded_block = [<br>            secret.index(<span class="hljs-built_in">chr</span>(block[<span class="hljs-number">0</span>])) &lt;&lt; <span class="hljs-number">2</span> | secret.index(<span class="hljs-built_in">chr</span>(block[<span class="hljs-number">1</span>])) &gt;&gt; <span class="hljs-number">4</span>,<br>            (secret.index(<span class="hljs-built_in">chr</span>(block[<span class="hljs-number">1</span>])) &amp; <span class="hljs-number">0xF</span>) &lt;&lt; <span class="hljs-number">4</span> | secret.index(<span class="hljs-built_in">chr</span>(block[<span class="hljs-number">2</span>])) &gt;&gt; <span class="hljs-number">2</span>,<br>            (secret.index(<span class="hljs-built_in">chr</span>(block[<span class="hljs-number">2</span>])) &amp; <span class="hljs-number">0x3</span>) &lt;&lt; <span class="hljs-number">6</span> | secret.index(<span class="hljs-built_in">chr</span>(block[<span class="hljs-number">3</span>]))<br>        ]<br>        <br>        <span class="hljs-comment"># 添加到输出列表</span><br>        <span class="hljs-keyword">for</span> byte <span class="hljs-keyword">in</span> decoded_block:<br>            <span class="hljs-keyword">if</span> byte != <span class="hljs-number">0</span>:  <span class="hljs-comment"># 跳过填充的空字节</span><br>                output.append(<span class="hljs-built_in">chr</span>(byte))<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(output)<br><br>secret = <span class="hljs-string">&quot;/128GhIoPQROSTeUbADfgHijKLM+n0pFWXY456xyzB7=39VaqrstJklmNuZvwcdEC&quot;</span><br>encoded_str = <span class="hljs-string">&quot;lvfzBiZiOw7&lt;lhF8dDOfEbmI]i@bdcZfEc^z&gt;aD!&quot;</span><br><br><span class="hljs-comment"># 进行解密</span><br>decoded_output = decode(encoded_str, secret)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Decoded output: <span class="hljs-subst">&#123;decoded_output&#125;</span>&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>从 Secret 里得到 密钥，和被加密的字符串一起带入脚本</p>
+<p><img src="/2024/09/11/2024-BaseCTF-re/key.png" srcset="/img/loading.gif" lazyload alt="key"></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">secret</span> = <span class="hljs-string">&quot;/128GhIoPQROSTeUbADfgHijKLM+n0pFWXY456xyzB7=39VaqrstJklmNuZvwcdEC&quot;</span><br><br><span class="hljs-attr">encoded_str</span> = <span class="hljs-string">&quot;lvfzBiZiOw7&lt;lhF8dDOfEbmI]i@bdcZfEc^z&gt;aD!&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>带入脚本即可得到正确的 flag</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dust"><span class="language-xml">BaseCTF</span><span class="hljs-template-variable">&#123;BA5e_DEcoD1N6_sEcr3t&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="Week1-人生苦短，我用Python"><a href="#Week1-人生苦短，我用Python" class="headerlink" title="[Week1] 人生苦短，我用Python"></a>[Week1] 人生苦短，我用Python</h2><p>心血来潮写道 misc。前面的14道都比较简单，直接丢进openai里就能把答案反出来，我直接把答案放在注释里了，最开始的答案是乱写的，也是蒙对了一部分，其实问题不大，最后都能改回正确答案</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> base64<br><span class="hljs-keyword">import</span> hashlib<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">abort</span>(<span class="hljs-params"><span class="hljs-built_in">id</span></span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;You failed test %d. Try again!&#x27;</span> % <span class="hljs-built_in">id</span>)<br>    exit(<span class="hljs-number">1</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Hello, Python!&#x27;</span>)<br>flag = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;Enter your flag: &#x27;</span>)<br><span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(flag) != <span class="hljs-number">38</span>:<br>    abort(<span class="hljs-number">1</span>)<br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> flag.startswith(<span class="hljs-string">&#x27;BaseCTF&#123;&#x27;</span>):<br>    abort(<span class="hljs-number">2</span>)<br><span class="hljs-keyword">if</span> flag.find(<span class="hljs-string">&#x27;Mp&#x27;</span>) != <span class="hljs-number">10</span>:   <span class="hljs-comment"># BaseCTF&#123;this_is_mey_flag_yesddddddd3x&#125;</span><br>    abort(<span class="hljs-number">3</span>)<br><span class="hljs-keyword">if</span> flag[-<span class="hljs-number">3</span>:] * <span class="hljs-number">8</span> != <span class="hljs-string">&#x27;3x&#125;3x&#125;3x&#125;3x&#125;3x&#125;3x&#125;3x&#125;3x&#125;&#x27;</span>: <span class="hljs-comment"># BaseCTF&#123;thMp_is_mey_flag_yesddddddd3x&#125;</span><br>    abort(<span class="hljs-number">4</span>)<br><span class="hljs-keyword">if</span> <span class="hljs-built_in">ord</span>(flag[-<span class="hljs-number">1</span>]) != <span class="hljs-number">125</span>:<br>    abort(<span class="hljs-number">5</span>)<br><span class="hljs-keyword">if</span> flag.count(<span class="hljs-string">&#x27;_&#x27;</span>) // <span class="hljs-number">2</span> != <span class="hljs-number">2</span>:<br>    abort(<span class="hljs-number">6</span>)<br><span class="hljs-keyword">if</span> <span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">len</span>, flag.split(<span class="hljs-string">&#x27;_&#x27;</span>))) != [<span class="hljs-number">14</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>, <span class="hljs-number">4</span>, <span class="hljs-number">8</span>]: <span class="hljs-comment"># BaseCTF&#123;thMpsi_sm_eyflag_yesd_ddddd3x&#125;</span><br>    abort(<span class="hljs-number">7</span>)<br><span class="hljs-keyword">if</span> flag[<span class="hljs-number">12</span>:<span class="hljs-number">32</span>:<span class="hljs-number">4</span>] != <span class="hljs-string">&#x27;lsT_n&#x27;</span>:    <span class="hljs-comment"># BaseCTF&#123;thMpli_ss_eyTlag_yesn_ddddd3x&#125;</span><br>    abort(<span class="hljs-number">8</span>)<br><span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;😺&#x27;</span>.join([c.upper() <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> flag[:<span class="hljs-number">9</span>]]) != <span class="hljs-string">&#x27;B😺A😺S😺E😺C😺T😺F😺&#123;😺S&#x27;</span>: <span class="hljs-comment"># BaseCTF&#123;ShMpli_ss_eyTlag_yesn_ddddd3x&#125;</span><br>    abort(<span class="hljs-number">9</span>)<br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> flag[-<span class="hljs-number">11</span>].isnumeric() <span class="hljs-keyword">or</span> <span class="hljs-built_in">int</span>(flag[-<span class="hljs-number">11</span>]) ** <span class="hljs-number">5</span> != <span class="hljs-number">1024</span>:    <span class="hljs-comment"># BaseCTF&#123;ShMpli_ss_eyTlag_ye4n_ddddd3x&#125;</span><br>    abort(<span class="hljs-number">10</span>)<br><span class="hljs-keyword">if</span> base64.b64encode(flag[-<span class="hljs-number">7</span>:-<span class="hljs-number">3</span>].encode()) != <span class="hljs-string">b&#x27;MG1QbA==&#x27;</span>:   <span class="hljs-comment"># BaseCTF&#123;ShMpli_ss_eyTlag_ye4n_d0mPl3x&#125;</span><br>    abort(<span class="hljs-number">11</span>)<br><span class="hljs-keyword">if</span> flag[::-<span class="hljs-number">7</span>].encode().<span class="hljs-built_in">hex</span>() != <span class="hljs-string">&#x27;7d4372733173&#x27;</span>:<span class="hljs-comment"># BaseCTF&#123;S1Mpli_ss_eyTlar_ye4n_C0mPl3x&#125;</span><br>    abort(<span class="hljs-number">12</span>)<br><span class="hljs-keyword">if</span> <span class="hljs-built_in">set</span>(flag[<span class="hljs-number">12</span>::<span class="hljs-number">11</span>]) != &#123;<span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;r&#x27;</span>&#125;:<br>    abort(<span class="hljs-number">13</span>)<br><span class="hljs-keyword">if</span> flag[<span class="hljs-number">21</span>:<span class="hljs-number">27</span>].encode() != <span class="hljs-built_in">bytes</span>([<span class="hljs-number">116</span>, <span class="hljs-number">51</span>, <span class="hljs-number">114</span>, <span class="hljs-number">95</span>, <span class="hljs-number">84</span>, <span class="hljs-number">104</span>]):  <span class="hljs-comment"># BaseCTF&#123;S1Mpli_ss_eyTt3r_Th4n_C0mPl3x&#125;</span><br>    abort(<span class="hljs-number">14</span>)<br></code></pre></td></tr></table></figure>
+
+<p>15道可以使用遍历脚本来完成</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> <span class="hljs-built_in">sum</span>(<span class="hljs-built_in">ord</span>(c) * <span class="hljs-number">2024_08_15</span> ** idx <span class="hljs-keyword">for</span> idx, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(flag[<span class="hljs-number">17</span>:<span class="hljs-number">20</span>])) != <span class="hljs-number">41378751114180610</span>:<br>    abort(<span class="hljs-number">15</span>)   <span class="hljs-comment"># BaseCTF&#123;S1Mpli_ss_BeTt3r_Th4n_C0mPl3x&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>脚本如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">replace_char</span>(<span class="hljs-params">s, position, new_char</span>):<br>    <span class="hljs-keyword">if</span> position &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> position &gt;= <span class="hljs-built_in">len</span>(s):<br>        <span class="hljs-keyword">raise</span> ValueError(<span class="hljs-string">&quot;Position out of range&quot;</span>)<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(new_char <span class="hljs-keyword">if</span> i == position <span class="hljs-keyword">else</span> c <span class="hljs-keyword">for</span> i, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(s))<br><br>flag = <span class="hljs-string">&#x27;BaseCTF&#123;S1Mpli_ss_eyTt3r_Th4n_C0mPl3x&#125;&#x27;</span><br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">48</span>,<span class="hljs-number">123</span>):<br>    new_string = replace_char(flag, <span class="hljs-number">18</span>, <span class="hljs-built_in">chr</span>(i))<br>    <span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">48</span>, <span class="hljs-number">123</span>):<br>        new_string2 = replace_char(new_string, <span class="hljs-number">19</span>, <span class="hljs-built_in">chr</span>(j))<br>        <span class="hljs-keyword">if</span>((<span class="hljs-built_in">sum</span>(<span class="hljs-built_in">ord</span>(c) * <span class="hljs-number">2024_08_15</span> ** idx <span class="hljs-keyword">for</span> idx, c <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(new_string2[<span class="hljs-number">17</span>:<span class="hljs-number">20</span>]))) == <span class="hljs-number">41378751114180610</span>):<br>            <span class="hljs-built_in">print</span>(new_string2)<br><br></code></pre></td></tr></table></figure>
+
+<p>后面的也很简单，直接简单修改即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> <span class="hljs-built_in">all</span>([flag[<span class="hljs-number">0</span>].isalpha(), flag[<span class="hljs-number">8</span>].islower(), flag[<span class="hljs-number">13</span>].isdigit()]):<br>    abort(<span class="hljs-number">16</span>)<br><span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;&#123;whats&#125; &#123;up&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(whats=flag[<span class="hljs-number">13</span>], up=flag[<span class="hljs-number">15</span>]).replace(<span class="hljs-string">&#x27;3&#x27;</span>, <span class="hljs-string">&#x27;bro&#x27;</span>) != <span class="hljs-string">&#x27;bro 1&#x27;</span>:<br>    abort(<span class="hljs-number">17</span>)<br><span class="hljs-keyword">if</span> hashlib.sha1(flag.encode()).hexdigest() != <span class="hljs-string">&#x27;e40075055f34f88993f47efb3429bd0e44a7f479&#x27;</span>:<br>    abort(<span class="hljs-number">18</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;🎉 You are right!&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>得到的 flag：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">BaseCTF&#123;s1Mpl3_1s_BeTt3r_Th4n_C0mPl3x&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CTF-Re/" class="category-chain-item">CTF_Re</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CTF-Re/BaseCTF/" class="category-chain-item">BaseCTF</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF-wps/" class="print-no-link">#CTF_wps</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2024_BaseCTF_re</div>
+      <div>http://example.com/2024/09/11/2024-BaseCTF-re/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tsglz</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/11/2024-moectf-re/" title="2024_moectf_re">
+                        <span class="hidden-mobile">2024_moectf_re</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"zNrmNFsImLSaeQ3rCZCp6oql-MdYXbMMI","appKey":"bTNSsMDqV7KWgjR3rQ7NeAs2","path":"window.location.pathname","placeholder":"say something","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/xm_custom/custom.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

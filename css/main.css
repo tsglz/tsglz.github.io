@@ -862,10 +862,10 @@ i.iconfont {
   }
   :root:not([data-user-color-scheme]) {
     --body-bg-color: rgb(24, 28, 39);
-    --board-bg-color: rgba(115, 114, 121, 0.4);
+    --board-bg-color: rgba(84, 87, 86, 0.67);
     --text-color: #c4c6c9;
     --sec-text-color: #cecece;
-    --post-text-color: #c3ce6b;
+    --post-text-color: #b6d955;
     --post-heading-color: #bbd7e8;
     --post-link-color: #b7f497;
     --link-hover-color: #30a9de;
@@ -900,10 +900,10 @@ i.iconfont {
 @media not print {
   [data-user-color-scheme="dark"] {
     --body-bg-color: rgb(24, 28, 39);
-    --board-bg-color: rgba(115, 114, 121, 0.4);
+    --board-bg-color: rgba(84, 87, 86, 0.67);
     --text-color: #c4c6c9;
     --sec-text-color: #cecece;
-    --post-text-color: #c3ce6b;
+    --post-text-color: #b6d955;
     --post-heading-color: #bbd7e8;
     --post-link-color: #b7f497;
     --link-hover-color: #30a9de;
