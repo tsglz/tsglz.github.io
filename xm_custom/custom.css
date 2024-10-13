@@ -28,7 +28,7 @@ html::-webkit-scrollbar-corner {
 
 /* 设置背景图片 */
 body {
-    background: url(/fll.jpeg);
+    background: url(/fll.jpg);
     background-attachment: fixed;
     background-size: cover;  
   }
