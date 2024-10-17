@@ -563,10 +563,10 @@ sup > a::before,
 }
 #nprogress .bar {
   height: 3px !important;
-  background-color: #29d !important;
+  background-color: #55a9d9 !important;
 }
 #nprogress .peg {
-  box-shadow: 0 0 14px #29d, 0 0 8px #29d !important;
+  box-shadow: 0 0 14px #55a9d9, 0 0 8px #55a9d9 !important;
 }
 @media (max-width: 575px) {
   #nprogress .bar {
@@ -834,26 +834,26 @@ i.iconfont {
 }
 :root {
   --color-mode: "light";
-  --body-bg-color: rgba(61, 135, 181, 0.46);
-  --board-bg-color: rgba(32, 85, 113, 0.5);
-  --text-color: #ddd7ac;
-  --sec-text-color: #cecece;
-  --post-text-color: #90e381;
-  --post-heading-color: #80a7ff;
-  --post-link-color: #7bf7f2;
-  --link-hover-color: #d3cc7f;
+  --body-bg-color: rgb(24, 28, 39);
+  --board-bg-color: rgba(63, 78, 103, 0.72);
+  --text-color: #ffffff;
+  --sec-text-color: #b4f7d5;
+  --post-text-color: #bed2ff;
+  --post-heading-color: #fceeb3;
+  --post-link-color: #6dc4c1;
+  --link-hover-color: #efe790;
   --link-hover-bg-color: #364151;
   --line-color: #6185bc;
-  --navbar-bg-color: #062127;
-  --navbar-text-color: #efefda;
-  --subtitle-color: #fff;
+  --navbar-bg-color: rgba(255, 255, 255, 0.71);
+  --navbar-text-color: #3131cb;
+  --subtitle-color: #000000;
   --scrollbar-color: #687582;
   --scrollbar-hover-color: #a6a6a6;
   --button-bg-color: transparent;
   --button-hover-bg-color: rgb(242, 243, 245);
   --highlight-bg-color: #f6f8fa;
   --inlinecode-bg-color: rgba(175,184,193,0.2);
-  --fold-title-color: #ddd7ac;
+  --fold-title-color: #ffffff;
   --fold-border-color: #6185bc;
 }
 @media (prefers-color-scheme: dark) {
@@ -862,25 +862,25 @@ i.iconfont {
   }
   :root:not([data-user-color-scheme]) {
     --body-bg-color: rgb(24, 28, 39);
-    --board-bg-color: rgba(84, 87, 86, 0.67);
-    --text-color: #c4c6c9;
-    --sec-text-color: #cecece;
-    --post-text-color: #b6d955;
-    --post-heading-color: #bbd7e8;
-    --post-link-color: #b7f497;
-    --link-hover-color: #30a9de;
+    --board-bg-color: rgba(96, 124, 152, 0.74);
+    --text-color: #000000;
+    --sec-text-color: #8eeeff;
+    --post-text-color: #c9ffe0;
+    --post-heading-color: #e4ffb9;
+    --post-link-color: #97f4c9;
+    --link-hover-color: #6ccffa;
     --link-hover-bg-color: #364151;
     --line-color: #435266;
-    --navbar-bg-color: #062127;
-    --navbar-text-color: #afbfc1;
-    --subtitle-color: #d0d0d0;
+    --navbar-bg-color: rgba(255, 255, 255, 0.71);
+    --navbar-text-color: #3131cb;
+    --subtitle-color: #000000;
     --scrollbar-color: #687582;
     --scrollbar-hover-color: #9da8b3;
     --button-bg-color: transparent;
     --button-hover-bg-color: rgb(242, 243, 245);
     --highlight-bg-color: #303030;
     --inlinecode-bg-color: rgba(99,110,123,0.4);
-    --fold-title-color: #c4c6c9;
+    --fold-title-color: #000000;
     --fold-border-color: #435266;
   }
   :root:not([data-user-color-scheme]) img {
@@ -900,25 +900,25 @@ i.iconfont {
 @media not print {
   [data-user-color-scheme="dark"] {
     --body-bg-color: rgb(24, 28, 39);
-    --board-bg-color: rgba(84, 87, 86, 0.67);
-    --text-color: #c4c6c9;
-    --sec-text-color: #cecece;
-    --post-text-color: #b6d955;
-    --post-heading-color: #bbd7e8;
-    --post-link-color: #b7f497;
-    --link-hover-color: #30a9de;
+    --board-bg-color: rgba(96, 124, 152, 0.74);
+    --text-color: #000000;
+    --sec-text-color: #8eeeff;
+    --post-text-color: #c9ffe0;
+    --post-heading-color: #e4ffb9;
+    --post-link-color: #97f4c9;
+    --link-hover-color: #6ccffa;
     --link-hover-bg-color: #364151;
     --line-color: #435266;
-    --navbar-bg-color: #062127;
-    --navbar-text-color: #afbfc1;
-    --subtitle-color: #d0d0d0;
+    --navbar-bg-color: rgba(255, 255, 255, 0.71);
+    --navbar-text-color: #3131cb;
+    --subtitle-color: #000000;
     --scrollbar-color: #687582;
     --scrollbar-hover-color: #9da8b3;
     --button-bg-color: transparent;
     --button-hover-bg-color: rgb(242, 243, 245);
     --highlight-bg-color: #303030;
     --inlinecode-bg-color: rgba(99,110,123,0.4);
-    --fold-title-color: #c4c6c9;
+    --fold-title-color: #000000;
     --fold-border-color: #435266;
   }
   [data-user-color-scheme="dark"] img {
