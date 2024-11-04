@@ -30,11 +30,11 @@
 <meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/tree_order.png">
 <meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/VLR.png">
 <meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/LVR.png">
-<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/VLR-1730684011373.png">
-<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/VRL-1730679400658.png">
+<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/VRL.png">
+<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/Level-order-traversal.png">
 <meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/xian_zhong.png">
-<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/xian_zhong-1730678979755.png">
-<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/VRL-1730679440534.png">
+<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/xian_zhong.png">
+<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/Trans_method.png">
 <meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/tree_to_btree.png">
 <meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/mid_trans.png">
 <meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/t2bt.png">
@@ -43,8 +43,14 @@
 <meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/bt2t(2).png">
 <meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/bt2for.png">
 <meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/bt2for_.png">
+<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/mul_link.png">
+<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/Child_Sibing.png">
+<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/tran_link.png">
+<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/parent.png">
+<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/right_first.png">
+<meta property="og:image" content="http://example.com/2024/11/03/%E6%A0%91/Right_first_.png">
 <meta property="article:published_time" content="2024-11-03T15:11:32.000Z">
-<meta property="article:modified_time" content="2024-11-04T01:35:28.581Z">
+<meta property="article:modified_time" content="2024-11-04T02:15:40.661Z">
 <meta property="article:author" content="Tsglz">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary_large_image">
@@ -391,12 +397,12 @@
 
 <h3 id="后序遍历（深度优先）——-O-n"><a href="#后序遍历（深度优先）——-O-n" class="headerlink" title="后序遍历（深度优先）—— O(n)"></a>后序遍历（深度优先）—— O(n)</h3><p>先依次遍历左右子树，最后访问根结点</p>
 <p>特性：最后访问输出的是该二叉树的根结点</p>
-<p><img src="/2024/11/03/%E6%A0%91/VLR-1730684011373.png" srcset="/img/loading.gif" lazyload alt="VLR"></p>
+<p><img src="/2024/11/03/%E6%A0%91/VRL.png" srcset="/img/loading.gif" lazyload alt="VRL"></p>
 <p>关键代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">void</span> <span class="hljs-title function_">PostOrderTree</span><span class="hljs-params">(BinaryTree *bt)</span><br>&#123;<br>	PostOrder(bt-&gt;root);    <span class="hljs-comment">//调用后序遍历递归函数</span><br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">PostOrder</span><span class="hljs-params">(BTNode *t)</span>   <span class="hljs-comment">//后序遍历递归函数</span><br>&#123;<br>	<span class="hljs-keyword">if</span>(!t)<br>		<span class="hljs-keyword">return</span>;<br>	PostOrder(t-&gt;lChild);    <span class="hljs-comment">//后序遍历左子树</span><br>	PostOrder(t-&gt;rChild);    <span class="hljs-comment">//后序遍历右子树</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>,t-&gt;element);  <span class="hljs-comment">//访问根节点</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="层次遍历（宽度优先）"><a href="#层次遍历（宽度优先）" class="headerlink" title="层次遍历（宽度优先）"></a>层次遍历（宽度优先）</h3><p>从上到下、从左到右逐层访问二叉树每一个结点，每个结点访问且仅访问一次（非递归）</p>
-<p><img src="/2024/11/03/%E6%A0%91/VRL-1730679400658.png" srcset="/img/loading.gif" lazyload alt="VRL"></p>
+<p><img src="/2024/11/03/%E6%A0%91/Level-order-traversal.png" srcset="/img/loading.gif" lazyload alt="Level-order-traversal"></p>
 <p>关键代码——时间复杂度 O(n)：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">define</span> QueueSize 100   <span class="hljs-comment">// 队列容量</span></span><br><span class="hljs-type">void</span> <span class="hljs-title function_">LevelOrderTree</span><span class="hljs-params">(BinaryTree *tree)</span> &#123;<br>    Queue Q;    <span class="hljs-comment">// Q 是用于存储 BTNode 结点类型指针的队列</span><br>    BTNode *p;<br>    <span class="hljs-keyword">if</span>(!tree-&gt;root)<br>        <span class="hljs-keyword">return</span>; <span class="hljs-comment">// 二叉树为空，则直接返回</span><br>    Create(&amp;Q, QueueSize); <span class="hljs-comment">// 初始化队列</span><br>    Enqueue(&amp;Q, tree-&gt;root); <span class="hljs-comment">// 将根结点入队</span><br>    <span class="hljs-keyword">while</span>(!isEmpty(&amp;Q))&#123;<br>        Front(&amp;Q, &amp;p); <span class="hljs-comment">// 队首元素出队</span><br>        DeQueue(&amp;Q); <span class="hljs-comment">// 队首元素出队</span><br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c &quot;</span>, p-&gt;element); <span class="hljs-comment">// 访问队首元素</span><br>        <span class="hljs-keyword">if</span>(p-&gt;leftChild) <span class="hljs-comment">// 若左子树非空，则入队</span><br>            Enqueue(&amp;Q, p-&gt;leftChild);<br>        <span class="hljs-keyword">if</span>(p-&gt;rightChild) <span class="hljs-comment">// 若右子树非空，则入队</span><br>            Enqueue(&amp;Q, p-&gt;rightChild);<br>    &#125;<br>    Destroy(&amp;Q); <span class="hljs-comment">// 销毁队列，释放内存</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -407,10 +413,10 @@
 <p>先序+中序</p>
 <p><img src="/2024/11/03/%E6%A0%91/xian_zhong.png" srcset="/img/loading.gif" lazyload alt="xian_zhong"></p>
 <p>后序+中序</p>
-<p><img src="/2024/11/03/%E6%A0%91/xian_zhong-1730678979755.png" srcset="/img/loading.gif" lazyload alt="xian_zhong"></p>
+<p><img src="/2024/11/03/%E6%A0%91/xian_zhong.png" srcset="/img/loading.gif" lazyload alt="xian_zhong"></p>
 <h2 id="树转化为二叉树"><a href="#树转化为二叉树" class="headerlink" title="树转化为二叉树"></a>树转化为二叉树</h2><p>将一棵树转换生成二叉树，则生成的二叉树的根结点一定没有右子树</p>
 <p>转换方法：</p>
-<p><img src="/2024/11/03/%E6%A0%91/VRL-1730679440534.png" srcset="/img/loading.gif" lazyload alt="VRL"></p>
+<p><img src="/2024/11/03/%E6%A0%91/Trans_method.png" srcset="/img/loading.gif" lazyload alt="Trans_method"></p>
 <p><img src="/2024/11/03/%E6%A0%91/tree_to_btree.png" srcset="/img/loading.gif" lazyload alt="tree_to_btree"></p>
 <p>首先连线，并断去除最左的线（之前补的不动）</p>
 <p><img src="/2024/11/03/%E6%A0%91/mid_trans.png" srcset="/img/loading.gif" lazyload alt="mid_trans"></p>
@@ -436,17 +442,17 @@
 <h3 id="二叉树到森林"><a href="#二叉树到森林" class="headerlink" title="二叉树到森林"></a>二叉树到森林</h3><p><img src="/2024/11/03/%E6%A0%91/bt2for.png" srcset="/img/loading.gif" lazyload alt="bt2for"></p>
 <h3 id="怎么判断一棵二叉树转换后包含几棵树"><a href="#怎么判断一棵二叉树转换后包含几棵树" class="headerlink" title="怎么判断一棵二叉树转换后包含几棵树"></a>怎么判断一棵二叉树转换后包含几棵树</h3><p>如下图画一根线，有多少右结点，转换后就有多少棵树</p>
 <p><img src="/2024/11/03/%E6%A0%91/bt2for_.png" srcset="/img/loading.gif" lazyload alt="bt2for_"></p>
-<h2 id="树和森林的存储表示"><a href="#树和森林的存储表示" class="headerlink" title="树和森林的存储表示"></a>树和森林的存储表示</h2><h3 id="多重链表表示法"><a href="#多重链表表示法" class="headerlink" title="多重链表表示法"></a>多重链表表示法</h3><p>![[mul_link.png]]</p>
+<h2 id="树和森林的存储表示"><a href="#树和森林的存储表示" class="headerlink" title="树和森林的存储表示"></a>树和森林的存储表示</h2><h3 id="多重链表表示法"><a href="#多重链表表示法" class="headerlink" title="多重链表表示法"></a>多重链表表示法</h3><p><img src="/2024/11/03/%E6%A0%91/mul_link.png" srcset="/img/loading.gif" lazyload alt="mul_link"></p>
 <h3 id="孩子兄弟表示法"><a href="#孩子兄弟表示法" class="headerlink" title="孩子兄弟表示法"></a>孩子兄弟表示法</h3><p>利用 树&#x2F;森林 与 二叉树 之间的对应关系</p>
-<p>![[Child_Sibing.png]]</p>
+<p><img src="/2024/11/03/%E6%A0%91/Child_Sibing.png" srcset="/img/loading.gif" lazyload alt="Child_Sibing"></p>
 <p>优点：能够继承二叉树的二叉链表的部分结构特性，以及部分运算操作</p>
 <h3 id="三重链表表示法"><a href="#三重链表表示法" class="headerlink" title="三重链表表示法"></a>三重链表表示法</h3><p>优点：能够方便访问结点的双亲和孩子</p>
-<p>![[tran_link.png]]</p>
+<p><img src="/2024/11/03/%E6%A0%91/tran_link.png" srcset="/img/loading.gif" lazyload alt="tran_link"></p>
 <h3 id="双亲表示法（顺序）"><a href="#双亲表示法（顺序）" class="headerlink" title="双亲表示法（顺序）"></a>双亲表示法（顺序）</h3><p>缺点：不方便从父结点到孩子结点的查找</p>
-<p>![[parent.png]]</p>
+<p><img src="/2024/11/03/%E6%A0%91/parent.png" srcset="/img/loading.gif" lazyload alt="parent"></p>
 <h3 id="带右链的先序表示法（顺序）"><a href="#带右链的先序表示法（顺序）" class="headerlink" title="带右链的先序表示法（顺序）"></a>带右链的先序表示法（顺序）</h3><p>结点存储顺序：按照对应的二叉树的先序遍历的顺序存储</p>
-<p>![[right_first.png]]</p>
-<p>![[Right_first_.png]]</p>
+<p><img src="/2024/11/03/%E6%A0%91/right_first.png" srcset="/img/loading.gif" lazyload alt="right_first"></p>
+<p><img src="/2024/11/03/%E6%A0%91/Right_first_.png" srcset="/img/loading.gif" lazyload alt="Right_first_"></p>
 
                 
               </div>
