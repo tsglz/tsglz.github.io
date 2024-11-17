@@ -24,6 +24,7 @@
 <meta property="og:description" content="搜索树二叉搜索树定义 结点由关键字值表征 假定所有结点关键字值不同 具有如下性质 可以是空二叉树 若左子树不空，则其上所有结点的关键字值均小于根结点 若右子树不空，则其上所有结点的关键字值均大于根结点 左右子树也分别为二叉搜索树    性质中序遍历-&gt;关键字值递增 搜索操作 空——&gt;失败 小于——&gt;左子树 大于——&gt;右子树 等于——&gt;结束  插入操作 查找插入元素的位">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_bbt.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/Single_Rotation.png">
 <meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/double_1.png">
 <meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/double_2.png">
 <meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/4f.png">
@@ -39,7 +40,7 @@
 <meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_6.png">
 <meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_7.png">
 <meta property="article:published_time" content="2024-11-17T02:25:24.000Z">
-<meta property="article:modified_time" content="2024-11-17T02:33:28.135Z">
+<meta property="article:modified_time" content="2024-11-17T02:36:46.438Z">
 <meta property="article:author" content="Tsglz">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary_large_image">
@@ -417,7 +418,7 @@
 </ol>
 <p>最小非平衡结点：离新插入结点最近的非平衡结点</p>
 <h5 id="单旋转方法"><a href="#单旋转方法" class="headerlink" title="单旋转方法"></a>单旋转方法</h5><p>适用于：LL（RR）插入类型，即新结点插入左子树的左子树，或右子树的右子树——&gt;即直线形式的插入</p>
-<p>![Single_ Rotation](Single_ Rotation.png)</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/Single_Rotation.png" srcset="/img/loading.gif" lazyload alt="Single_Rotation"></p>
 <h5 id="双旋转方法"><a href="#双旋转方法" class="headerlink" title="双旋转方法"></a>双旋转方法</h5><p>适用于 LR（RL）插入类型——&gt;即折线形式的插入</p>
 <p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/double_1.png" srcset="/img/loading.gif" lazyload alt="double_1"></p>
 <p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/double_2.png" srcset="/img/loading.gif" lazyload alt="double_2"></p>
