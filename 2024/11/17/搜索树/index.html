@@ -1,0 +1,972 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="rgba(255, 255, 255, 0.71)">
+  <meta name="author" content="Tsglz">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="搜索树二叉搜索树定义 结点由关键字值表征 假定所有结点关键字值不同 具有如下性质 可以是空二叉树 若左子树不空，则其上所有结点的关键字值均小于根结点 若右子树不空，则其上所有结点的关键字值均大于根结点 左右子树也分别为二叉搜索树    性质中序遍历-&gt;关键字值递增 搜索操作 空——&gt;失败 小于——&gt;左子树 大于——&gt;右子树 等于——&gt;结束  插入操作 查找插入元素的位">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搜索树">
+<meta property="og:url" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/index.html">
+<meta property="og:site_name" content="Tsglz的个人博客">
+<meta property="og:description" content="搜索树二叉搜索树定义 结点由关键字值表征 假定所有结点关键字值不同 具有如下性质 可以是空二叉树 若左子树不空，则其上所有结点的关键字值均小于根结点 若右子树不空，则其上所有结点的关键字值均大于根结点 左右子树也分别为二叉搜索树    性质中序遍历-&gt;关键字值递增 搜索操作 空——&gt;失败 小于——&gt;左子树 大于——&gt;右子树 等于——&gt;结束  插入操作 查找插入元素的位">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_bbt.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/double_1.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/double_2.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/4f.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_1.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_2.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_3.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_4.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_1.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_2.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_3.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_4.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_5.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_6.png">
+<meta property="og:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_7.png">
+<meta property="article:published_time" content="2024-11-17T02:25:24.000Z">
+<meta property="article:modified_time" content="2024-11-17T02:33:28.135Z">
+<meta property="article:author" content="Tsglz">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_bbt.png">
+  
+  
+  
+  <title>搜索树 - Tsglz的个人博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/xm_custom/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#55a9d9","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":false},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"zNrmNFsImLSaeQ3rCZCp6oql-MdYXbMMI","app_key":"bTNSsMDqV7KWgjR3rQ7NeAs2","server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Tsglz的个人博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/null') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="搜索树"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-17 10:25" pubdate>
+          2024年11月17日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> times
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">搜索树</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="搜索树"><a href="#搜索树" class="headerlink" title="搜索树"></a>搜索树</h1><h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><ul>
+<li>结点由关键字值表征</li>
+<li>假定所有结点关键字值不同</li>
+<li>具有如下性质<ul>
+<li>可以是空二叉树</li>
+<li>若左子树不空，则其上所有结点的关键字值均<strong>小</strong>于根结点</li>
+<li>若右子树不空，则其上所有结点的关键字值均<strong>大</strong>于根结点</li>
+<li>左右子树也分别为二叉搜索树</li>
+</ul>
+</li>
+</ul>
+<h3 id="性质"><a href="#性质" class="headerlink" title="性质"></a>性质</h3><p>中序遍历-&gt;关键字值递增</p>
+<h3 id="搜索操作"><a href="#搜索操作" class="headerlink" title="搜索操作"></a>搜索操作</h3><ul>
+<li>空——&gt;失败</li>
+<li>小于——&gt;左子树</li>
+<li>大于——&gt;右子树</li>
+<li>等于——&gt;结束</li>
+</ul>
+<h3 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h3><ol>
+<li>查找插入元素的位置<ol>
+<li>从根结点向下搜索</li>
+<li>搜索失败的地方作为元素 x 的插入位置<ol>
+<li>有重复元素，返回 Duplicate，不进行重复插入！</li>
+<li>搜索到达空子树，则不含重复元素</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>生成新结点<ol>
+<li>构造新结点 p 存放新元素 x</li>
+</ol>
+</li>
+<li>插入新结点（可能修改根结点）<ol>
+<li>新结点在间断处的下一层</li>
+<li>左&#x2F;右 取决于关键字大小的比较</li>
+<li>原二叉搜索树为空树，则新结点为新树的根</li>
+</ol>
+</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function">TreeNode *<span class="hljs-title">insert</span><span class="hljs-params">(TreeNode *node, <span class="hljs-type">int</span> key)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">// 如果当前节点为空，创建一个新节点并返回</span><br>    <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">nullptr</span>)<br>    &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TreeNode</span>(key);<br>    &#125;<br><br>    <span class="hljs-comment">// 如果待插入的键值小于当前节点的值，</span><br>    <span class="hljs-comment">// 则递归地插入到当前节点的左子树</span><br>    <span class="hljs-keyword">if</span> (key &lt; node-&gt;val)<br>    &#123;<br>        node-&gt;left = <span class="hljs-built_in">insert</span>(node-&gt;left, key);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-comment">// 否则，递归地插入到当前节点的右子树</span><br>        node-&gt;right = <span class="hljs-built_in">insert</span>(node-&gt;right, key);<br>    &#125;<br><br>    <span class="hljs-comment">// 返回当前节点指针</span><br>    <span class="hljs-keyword">return</span> node;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="删除操作"><a href="#删除操作" class="headerlink" title="删除操作"></a>删除操作</h3><h4 id="删除叶子结点"><a href="#删除叶子结点" class="headerlink" title="删除叶子结点"></a>删除叶子结点</h4><p>直接删</p>
+<h4 id="删除有一个孩子的结点"><a href="#删除有一个孩子的结点" class="headerlink" title="删除有一个孩子的结点"></a>删除有一个孩子的结点</h4><p>先把目标结点的前一个结点和后一个结点相连，再把目标结点释放</p>
+<h4 id="删除有两个孩子的结点"><a href="#删除有两个孩子的结点" class="headerlink" title="删除有两个孩子的结点"></a>删除有两个孩子的结点</h4><p>在目标结点的后代中选一个替代者覆盖待删除结点，替代者要满足：</p>
+<ol>
+<li>能保持二叉搜索树的有序性（待删除结点左子树结点值&lt;&#x3D;代替者&lt;&#x3D;待删除结点右子树结点值）</li>
+<li>容易删除（1个或没有孩子）<br>然后删除重复的替代者</li>
+</ol>
+<h5 id="代替者的选择方法"><a href="#代替者的选择方法" class="headerlink" title="代替者的选择方法"></a>代替者的选择方法</h5><p>中序遍历，目标结点的前一项或后一项</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 获取以 node 为根节点的子树中的最小值节点</span><br><span class="hljs-function">TreeNode *<span class="hljs-title">getMinValueNode</span><span class="hljs-params">(TreeNode *node)</span></span><br><span class="hljs-function"></span>&#123;<br>    TreeNode *current = node; <span class="hljs-comment">// 从传入的节点开始查找</span><br>    <span class="hljs-comment">// 循环查找最左侧的节点，即最小值</span><br>    <span class="hljs-keyword">while</span> (current &amp;&amp; current-&gt;left != <span class="hljs-literal">nullptr</span>)<br>    &#123;<br>        current = current-&gt;left; <span class="hljs-comment">// 移动到左子节点</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> current; <span class="hljs-comment">// 返回找到的最小值节点</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 删除指定键值的节点</span><br><span class="hljs-function">TreeNode *<span class="hljs-title">deleteNode</span><span class="hljs-params">(TreeNode *node, <span class="hljs-type">int</span> key)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-comment">// 如果当前节点为空，直接返回</span><br>    <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">nullptr</span>)<br>    &#123;<br>        <span class="hljs-keyword">return</span> node;<br>    &#125;<br><br>    <span class="hljs-comment">// 针对键值进行比较，决定递归地向左子树或右子树查找</span><br>    <span class="hljs-keyword">if</span> (key &lt; node-&gt;val)<br>    &#123;<br>        node-&gt;left = <span class="hljs-built_in">deleteNode</span>(node-&gt;left, key);<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (key &gt; node-&gt;val)<br>    &#123;<br>        node-&gt;right = <span class="hljs-built_in">deleteNode</span>(node-&gt;right, key);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-comment">// 找到要删除的节点</span><br>        <span class="hljs-keyword">if</span> (node-&gt;left == <span class="hljs-literal">nullptr</span>)<br>        &#123;<br>            <span class="hljs-keyword">return</span> node-&gt;right; <span class="hljs-comment">// 如果左子树为空，返回右子树</span><br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (node-&gt;right == <span class="hljs-literal">nullptr</span>)<br>        &#123;<br>            <span class="hljs-keyword">return</span> node-&gt;left; <span class="hljs-comment">// 如果右子树为空，返回左子树</span><br>        &#125;<br><br>        <span class="hljs-comment">// 找到右子树的最小值节点</span><br>        TreeNode *minLargerNode = <span class="hljs-built_in">getMinValueNode</span>(node-&gt;right);<br>        node-&gt;val = minLargerNode-&gt;val;                            <span class="hljs-comment">// 用最小值节点的值替换当前节点值</span><br>        node-&gt;right = <span class="hljs-built_in">deleteNode</span>(node-&gt;right, minLargerNode-&gt;val); <span class="hljs-comment">// 删除最小值节点</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> node; <span class="hljs-comment">// 返回当前节点</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="二叉平衡树（AVL树）"><a href="#二叉平衡树（AVL树）" class="headerlink" title="二叉平衡树（AVL树）"></a>二叉平衡树（AVL树）</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>二叉平衡树：</p>
+<ul>
+<li>根的左右子树高度差的绝对值不超过 1</li>
+<li>根的左右子树都是二叉平衡树</li>
+</ul>
+<p>结点平衡因子：左子树高度-右子树高度</p>
+<p>使用二叉平衡树可以将树的高度稳定在对数级别，这样可以较好的提高搜索等的性能</p>
+<h3 id="插入运算"><a href="#插入运算" class="headerlink" title="插入运算"></a>插入运算</h3><h4 id="基本原则"><a href="#基本原则" class="headerlink" title="基本原则"></a>基本原则</h4><ol>
+<li>先按普通二叉搜索树方法插入，保持排序性</li>
+<li>再判断平衡性是否被破坏，决定是否要调整</li>
+</ol>
+<h4 id="怎么检查平衡性"><a href="#怎么检查平衡性" class="headerlink" title="怎么检查平衡性"></a>怎么检查平衡性</h4><p>从最后一次更新的结点向上回溯，重新判断结点平衡因子，出现平衡因子绝对值大于 1  的情况，即为平衡性被破坏</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_bbt.png" srcset="/img/loading.gif" lazyload alt="insert_bbt"></p>
+<p>关键代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 获取平衡因子</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getBalance</span><span class="hljs-params">(AVLTreeNode&lt;T&gt;* node)</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> node ? <span class="hljs-built_in">getHeight</span>(node-&gt;left) - <span class="hljs-built_in">getHeight</span>(node-&gt;right) : <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="怎么调整恢复平衡性"><a href="#怎么调整恢复平衡性" class="headerlink" title="怎么调整恢复平衡性"></a>怎么调整恢复平衡性</h4><ol>
+<li>找到需要调整的最小子树</li>
+<li>调整</li>
+</ol>
+<p>最小非平衡结点：离新插入结点最近的非平衡结点</p>
+<h5 id="单旋转方法"><a href="#单旋转方法" class="headerlink" title="单旋转方法"></a>单旋转方法</h5><p>适用于：LL（RR）插入类型，即新结点插入左子树的左子树，或右子树的右子树——&gt;即直线形式的插入</p>
+<p>![Single_ Rotation](Single_ Rotation.png)</p>
+<h5 id="双旋转方法"><a href="#双旋转方法" class="headerlink" title="双旋转方法"></a>双旋转方法</h5><p>适用于 LR（RL）插入类型——&gt;即折线形式的插入</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/double_1.png" srcset="/img/loading.gif" lazyload alt="double_1"></p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/double_2.png" srcset="/img/loading.gif" lazyload alt="double_2"></p>
+<h4 id="速通方法"><a href="#速通方法" class="headerlink" title="速通方法"></a>速通方法</h4><p>转来转去看懵逼了，想想办法吧</p>
+<p>不管是单旋转调整还是双旋转调整：</p>
+<ul>
+<li>找到最小非平衡结点</li>
+<li>将离根结点最近的3个结点直接构成一个子树进行重排，排完将根结点插回去</li>
+<li>新子树除了新根结点的分支需要修改，其它直接保留就行</li>
+<li>新根结点的原分支中，只有第一个子节点需要调整，如果它还有后续，不需要改动</li>
+</ul>
+<h2 id="B-树"><a href="#B-树" class="headerlink" title="B-树"></a>B-树</h2><h3 id="m叉搜索树的定义及性质"><a href="#m叉搜索树的定义及性质" class="headerlink" title="m叉搜索树的定义及性质"></a>m叉搜索树的定义及性质</h3><p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/4f.png" srcset="/img/loading.gif" lazyload alt="4f"></p>
+<p>方块：空树（失败结点），不是叶子结点——&gt;搜索某个关键字不在树中时到达的子树</p>
+<ol>
+<li>每个结点可以有超过两棵子树</li>
+<li>每两棵子树间夹一个关键字</li>
+<li>结点中关键字、同一层关键字都是递增的</li>
+<li>如果有的话，关键字：左&lt;中&lt;右</li>
+</ol>
+<p>一个 m 叉搜索树的结点中，最多存放 m-1 个元素和 m 个指向子树的指针，且每个结点中包含的元素个数总是比包含的指针数少 1</p>
+<h4 id="性质-1"><a href="#性质-1" class="headerlink" title="性质"></a>性质</h4><ol>
+<li>高度为 h 的 m 叉搜索树中最多有 m<sup>h</sup>-1 个元素<br>$$<br>结点数_{max}&#x3D;1+m+…+m^{h-1}&#x3D;\frac{m^h-1}{m-1}<br>$$<br>且每个结点最多有 m-1 个元素</li>
+<li>含有 N 个元素的 m 叉搜索树高度在 log<sub>m</sub>(N+1) 到 N 之间</li>
+</ol>
+<h3 id="内搜索和外搜索"><a href="#内搜索和外搜索" class="headerlink" title="内搜索和外搜索"></a>内搜索和外搜索</h3><p>内存的存取速度比磁盘快 一w~百w，设法减少磁盘存取操作的次数是外搜索算法设计应充分考虑的问题</p>
+<p>内搜索：集合足够小，可以在内存中搜索（一般：二叉平衡树）</p>
+<p>外搜索：内存不够大，只能放在外存中处理（B-树）</p>
+<h3 id="B-树的定义及性质"><a href="#B-树的定义及性质" class="headerlink" title="B-树的定义及性质"></a>B-树的定义及性质</h3><p>空树或满足下列特性：</p>
+<ol>
+<li>根结点至少有 2 个孩子，根结点可以只含有 1 个元素</li>
+<li>除根结点和失败结点外的所有结点至少有 m&#x2F;2（向上取整）个孩子</li>
+<li>所有失败结点在同一层</li>
+</ol>
+<h4 id="性质-2"><a href="#性质-2" class="headerlink" title="性质"></a>性质</h4><ol>
+<li>元素总数 N &#x3D; 失败结点数 s - 1</li>
+<li>含有 N 个元素的 m 阶 B-树的高度 h 有：h&lt;&#x3D;1+log<sub>m&#x2F;2</sub>(N+1)&#x2F;2，其中 m&#x2F;2 向上取整</li>
+</ol>
+<h3 id="B-树的插入"><a href="#B-树的插入" class="headerlink" title="B-树的插入"></a>B-树的插入</h3><h4 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h4><p>搜索新元素，存在就不插入；若不存在，将新元素插在失败结点的上一层叶子结点中</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_1.png" srcset="/img/loading.gif" lazyload alt="insert_1"></p>
+<h4 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h4><p>将新元素和一个空指针插入</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_2.png" srcset="/img/loading.gif" lazyload alt="insert_2"></p>
+<h4 id="检查和分裂"><a href="#检查和分裂" class="headerlink" title="检查和分裂"></a>检查和分裂</h4><p>以 m&#x2F;2（向上取整）处的元素为分割点：该元素前，该元素，该元素后，共3部分</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_3.png" srcset="/img/loading.gif" lazyload alt="insert_3"></p>
+<p>前一段和原父结点匹配，将该元素上移成为后一段的父结点</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/insert_4.png" srcset="/img/loading.gif" lazyload alt="insert_4"></p>
+<p>检查该元素所在的结点，如果还出现上溢出，重复操作；若根结点产生分裂，将导致 B-树 长高一层</p>
+<h3 id="B-树的删除"><a href="#B-树的删除" class="headerlink" title="B-树的删除"></a>B-树的删除</h3><h4 id="搜索-1"><a href="#搜索-1" class="headerlink" title="搜索"></a>搜索</h4><ul>
+<li>不存在则失败</li>
+<li>存在，判断是否在叶结点上</li>
+</ul>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_1.png" srcset="/img/loading.gif" lazyload alt="delete_1"></p>
+<h4 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h4><p>叶结点：直接删除，检查下溢出</p>
+<p>非叶结点：替代操作——右侧子树上的最小元素取代</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_2.png" srcset="/img/loading.gif" lazyload alt="delete_2"></p>
+<p>然后把该最小元素删除，检查下溢出</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_3.png" srcset="/img/loading.gif" lazyload alt="delete_3"></p>
+<h4 id="下溢出"><a href="#下溢出" class="headerlink" title="下溢出"></a>下溢出</h4><p>如下图，r 处出现下溢出，此时需要向同胞兄弟结点借用元素（如果左右两侧兄弟有富余的话）</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_4.png" srcset="/img/loading.gif" lazyload alt="delete_4"></p>
+<p>借用结点对应的父结点元素</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_5.png" srcset="/img/loading.gif" lazyload alt="delete_5"></p>
+<p>父结点缺失的位置向兄弟节点借</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_6.png" srcset="/img/loading.gif" lazyload alt="delete_6"></p>
+<p>将元素和结点一起借走（如果有子树，一起借走）</p>
+<p><img src="/2024/11/17/%E6%90%9C%E7%B4%A2%E6%A0%91/delete_7.png" srcset="/img/loading.gif" lazyload alt="delete_7"></p>
+<p>若发生下溢出且无富余元素的兄弟，可将下溢出结点与其左&#x2F;右兄弟合并（优先左），同时将双亲结点中夹在左右侧子树的元素下移到合并后的结点中形成新的结点</p>
+<p>如果由于并操作，导致根结点中的一个元素被删除，且该结点只包含一个元素，则根结点变空结点，B-树矮一层</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="category-chain-item">数据结构</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="print-no-link">#数据结构</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>搜索树</div>
+      <div>http://example.com/2024/11/17/搜索树/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tsglz</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/15/%E9%9B%86%E5%90%88%E5%92%8C%E6%90%9C%E7%B4%A2/" title="集合和搜索">
+                        <span class="hidden-mobile">集合和搜索</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"zNrmNFsImLSaeQ3rCZCp6oql-MdYXbMMI","appKey":"bTNSsMDqV7KWgjR3rQ7NeAs2","path":"window.location.pathname","placeholder":"say something","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/xm_custom/custom.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
