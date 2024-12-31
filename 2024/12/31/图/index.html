@@ -32,8 +32,18 @@
 <meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/not_liantong.png">
 <meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/lian_tong_fen_liang.png">
 <meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/not_ltfl.png">
+<meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/shengchengshu.png">
+<meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/linjiejvzhen.png">
+<meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/linjiebiao.png">
+<meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/daiquan.png">
+<meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/DFS.png">
+<meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/BFS.png">
+<meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/AOV.png">
+<meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/AOE.png">
+<meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/1.png">
+<meta property="og:image" content="http://example.com/2024/12/31/%E5%9B%BE/2.png">
 <meta property="article:published_time" content="2024-12-31T04:39:27.000Z">
-<meta property="article:modified_time" content="2024-12-31T04:44:22.941Z">
+<meta property="article:modified_time" content="2024-12-31T04:48:30.043Z">
 <meta property="article:author" content="Tsglz">
 <meta property="article:tag" content="数据结构">
 <meta name="twitter:card" content="summary_large_image">
@@ -378,7 +388,7 @@
 <li>包含所有顶点</li>
 <li>只有足以构成一棵树的边（n-1），加上一条边将构成回路</li>
 </ul>
-<p>![[shengchengshu.png]]</p>
+<p><img src="/2024/12/31/%E5%9B%BE/shengchengshu.png" srcset="/img/loading.gif" lazyload alt="shengchengshu"></p>
 <h3 id="网"><a href="#网" class="headerlink" title="网"></a>网</h3><p>在图的边上加上数字作为权值（代价）</p>
 <p>带权有向图的抽象数据类型</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp">ADT Graph&#123;<br>数据：<br>	顶点的有限非空集合V和边集合E，每条边由E中偶对&lt;u，い&gt;表示。<br>	数据元素之间的关系是多对多的关系。<br>运算：<br>	Init（G，n）：初始化运算。构造一个包含n个顶点没有边的图G。<br>	Destroy（G）：撤销运算。撤销一个图G。<br>	Exist（G，u，v）：边的搜索运算。若图G中存在边&lt;u，v&gt;，则函数返回OK，否则返回                           Error。<br>	Insert（G，u，v，w）：边的插入运算。向图G中添加权为w的边&lt;u，v&gt;，若插入成功，返回                          OK；若图中已存在边&lt;u,v&gt;,则返回Duplicate;否则返回Error。<br>	<span class="hljs-built_in">Remove</span>(G,u,v):边的删除运算。从图G中删除边&lt;u,v&gt;,若图中不存在边&lt;u,v&gt;,则返回                         NotPresent;若图中存在边&lt;u，v&gt;，则从图中删除此边，返回OK；其他返回                   Error。<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -388,7 +398,7 @@
 <p>$$<br>A[u][v] &#x3D; \begin{cases} 1, &amp; \text{若 } (u,v) \text{ 或 } \langle u,v \rangle \in E \ 0, &amp; \text{否则} \end{cases}<br>$$</p>
 <p>若为网，则可定义为</p>
 <p>$$<br>A[u][v] &#x3D; \begin{cases} w, &amp; \text{若 } (u,v) \text{ 或 } \langle u,v \rangle \in E \ 0, &amp; \text{若 u&#x3D;v}<br>\ \infty, &amp; \text{否则}<br>\end{cases}<br>$$<br>其中，w 表示边上权值，无穷大表示计算机允许的、大于所有边上权值的数</p>
-<p>![[linjiejvzhen.png]]</p>
+<p><img src="/2024/12/31/%E5%9B%BE/linjiejvzhen.png" srcset="/img/loading.gif" lazyload alt="linjiejvzhen"></p>
 <h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
 <li>便于判断两个顶点之间是否有边（A[u][v]值）</li>
 <li>便于计算各个顶点的度<ol>
@@ -408,9 +418,9 @@
 </li>
 </ul>
 <h3 id="邻接表表示法"><a href="#邻接表表示法" class="headerlink" title="邻接表表示法"></a>邻接表表示法</h3><p>下图为不带权的邻接表示例（未列出保存顶点信息的数据域——应在头尾中间）：</p>
-<p>![[linjiebiao.png]]</p>
+<p><img src="/2024/12/31/%E5%9B%BE/linjiebiao.png" srcset="/img/loading.gif" lazyload alt="linjiebiao.png"></p>
 <p>下图分别为带权和不带权的图示（简化条件下的表示可以将头链表转为使用数组代替）</p>
-<p>![[daiquan.png]]</p>
+<p><img src="/2024/12/31/%E5%9B%BE/daiquan.png" srcset="/img/loading.gif" lazyload alt="daiquan"></p>
 <h4 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h4><ul>
 <li>便于统计边的数目<ul>
 <li>时间复杂度 O(n+e)，其中 n 为顶点，e 为边</li>
@@ -461,7 +471,7 @@
 </ul>
 </li>
 </ul>
-<p>![[DFS.png]]</p>
+<p><img src="/2024/12/31/%E5%9B%BE/DFS.png" srcset="/img/loading.gif" lazyload alt="DFS"></p>
 <p>注：如果中间出现路径不连通而导致的重新搜索，会得到 深度优先搜索生成森林</p>
 <h4 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">DFS</span><span class="hljs-params">(<span class="hljs-type">int</span> v, <span class="hljs-type">int</span> visited, LGraph g)</span></span><br><span class="hljs-function"></span>&#123;<br>	ENode *w;<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,v); <span class="hljs-comment">//访问顶点v</span><br>	visited[v]=<span class="hljs-number">1</span>;  <span class="hljs-comment">//为顶点v打上访问标记</span><br>	<span class="hljs-keyword">for</span>(w=g.a[v]; w; w=w-&gt;nextArc)<br>	&#123;<br>		<span class="hljs-keyword">if</span>(!visited[w-&gt;adjVex)<br>			<span class="hljs-built_in">DFS</span>(w-&gt;adjVex,visited, g);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -490,7 +500,7 @@
 </ul>
 </li>
 </ul>
-<p>![[BFS.png]]</p>
+<p><img src="/2024/12/31/%E5%9B%BE/BFS.png" srcset="/img/loading.gif" lazyload alt="BFS"></p>
 <h4 id="代码示例-1"><a href="#代码示例-1" class="headerlink" title="代码示例"></a>代码示例</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BFS</span><span class="hljs-params">(<span class="hljs-type">int</span> v, <span class="hljs-type">int</span> visited[l, LGraph g)</span></span><br><span class="hljs-function"></span>&#123;<br>	ENode *w;<br>	Queue q;<br>	<br>	<span class="hljs-built_in">create</span>(&amp;q,g.n);  <span class="hljs-comment">//初始化队列</span><br>	visited[v]=<span class="hljs-number">1</span>；<span class="hljs-comment">//为顶点v打上访问标记</span><br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>，v); <span class="hljs-comment">//访问顶点v</span><br>	<span class="hljs-built_in">EnQueue</span>(&amp;q,v); <span class="hljs-comment">//将顶点v放入队列</span><br>	<span class="hljs-keyword">while</span> (!<span class="hljs-built_in">IsEmpty</span>(&amp;q))<br>	&#123;<br>		<span class="hljs-built_in">Front</span>(&amp;q,&amp;u);<br>		<span class="hljs-built_in">DeQueue</span>(&amp;q); <span class="hljs-comment">//队首顶点u出队</span><br>		<span class="hljs-keyword">for</span>(w=g.a[u];w;w=w-&gt;nextArc)<br>		<span class="hljs-comment">//依序搜素u的未被访问过的邻接点，访问并将其入队</span><br>			<span class="hljs-keyword">if</span> (!visited[w-&gt;adjVex])<br>			&#123;<br>				visited[w-&gt;adjVex]=<span class="hljs-number">1</span>;<br>				<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d&quot;</span>,w-&gt;adjVex);<br>				<span class="hljs-built_in">EnQueue</span>(&amp;q,w-&gt;adjVex);<br>			&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">BFSTraverse</span><span class="hljs-params">(LGraph g)</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> i;<br>	<span class="hljs-comment">//动态生成访问标记数组</span><br>	<span class="hljs-type">int</span> *visited =(<span class="hljs-type">int</span>*)<span class="hljs-built_in">malloc</span>(g.n*<span class="hljs-built_in">sizeof</span>(<span class="hljs-type">int</span>);<br>	<span class="hljs-keyword">for</span>（i=<span class="hljs-number">0</span>；i&lt;g.n；i++）<span class="hljs-comment">//初始化访问标记数组</span><br>		visited[i]=<span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span>（i=<span class="hljs-number">0</span>；i&lt;g.n；i++）<span class="hljs-comment">//依序检查每个顶点，若未被访问，则调用BFS算法以该点为起始点遍历该图</span><br>		<span class="hljs-keyword">if</span> (!visited[i])<br>			<span class="hljs-built_in">BFS</span>(i, visited, g);<br>	<span class="hljs-built_in">free</span>(visited);<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -505,7 +515,7 @@
 </li>
 </ul>
 <h2 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h2><h3 id="顶点活动网络（AOV-网）"><a href="#顶点活动网络（AOV-网）" class="headerlink" title="顶点活动网络（AOV 网）"></a>顶点活动网络（AOV 网）</h3><p>顶点代表活动，有向边表示活动之间领先关系的有向图</p>
-<p>![[AOV.png]]</p>
+<p><img src="/2024/12/31/%E5%9B%BE/AOV.png" srcset="/img/loading.gif" lazyload alt="AOV"></p>
 <p>注：AOV 网不应有环，应该是一个有向无环图（DAG 图）</p>
 <p>判断 AOV 网是否有环：对有向图顶点进行拓扑排序，若所有顶点都在拓扑序列中，则该 AOV 网必定不存在环</p>
 <h3 id="拓扑排序与拓扑序列"><a href="#拓扑排序与拓扑序列" class="headerlink" title="拓扑排序与拓扑序列"></a>拓扑排序与拓扑序列</h3><h4 id="拓扑排序-1"><a href="#拓扑排序-1" class="headerlink" title="拓扑排序"></a>拓扑排序</h4><p>将 AOV 网中所有顶点线性排列</p>
@@ -551,7 +561,7 @@
 </ul>
 <h3 id="关键路径-1"><a href="#关键路径-1" class="headerlink" title="关键路径"></a>关键路径</h3><p>从开始顶点到完成顶点的最长路径</p>
 <p>最短时间：关键路径的长度，关键路径上边代表的活动称为关键活动</p>
-<p>![[AOE.png]]</p>
+<p><img src="/2024/12/31/%E5%9B%BE/AOE.png" srcset="/img/loading.gif" lazyload alt="AOE"></p>
 <h4 id="事件相关"><a href="#事件相关" class="headerlink" title="事件相关"></a>事件相关</h4><p>事件 a 可能的最早发生时间 E<sub>early</sub>(v<sub>i</sub>)：开始顶点 v<sub>0</sub> 到 顶点 a 的最长路径长度</p>
 <p>事件 a 允许的最迟发生时间 E<sub>late</sub>(v<sub>i</sub>)：不影响工期的条件下，a 允许的最晚发生时间</p>
 <h4 id="活动相关"><a href="#活动相关" class="headerlink" title="活动相关"></a>活动相关</h4><p>活动 a 可能的最早开始时间 A<sub>early</sub>(a) &#x3D; E<sub>early</sub>(v<sub>i</sub>)</p>
@@ -626,8 +636,8 @@
 </ul>
 </li>
 </ul>
-<p>![[typora&#x2F;photos&#x2F;算法&#x2F;1.png]]</p>
-<p>![[typora&#x2F;photos&#x2F;算法&#x2F;1.png]]</p>
+<p><img src="/2024/12/31/%E5%9B%BE/1.png" srcset="/img/loading.gif" lazyload alt="1"></p>
+<p><img src="/2024/12/31/%E5%9B%BE/2.png" srcset="/img/loading.gif" lazyload alt="2.png"></p>
 <h4 id="数据结构-2"><a href="#数据结构-2" class="headerlink" title="数据结构"></a>数据结构</h4><ul>
 <li>邻接表存储</li>
 <li>3个一维数组<ul>
