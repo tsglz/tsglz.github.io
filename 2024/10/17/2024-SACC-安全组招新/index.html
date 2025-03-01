@@ -1,0 +1,824 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Tsglz">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2024_SACC_安全组招新题wp题目链接：https:&#x2F;&#x2F;github.com&#x2F;tsglz&#x2F;tsglz.github.io&#x2F;releases&#x2F;download&#x2F;2024-SACC&#x2F;2024-SACC.rar 密码：2024-SACC 1_just_click 直接 IDA 打开，打开 omg(0) 即为 flag   如果你对 xyz(p) 感到好奇点开看了下，你就会发现进行了一个 异或0x5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024_SACC_安全组招新">
+<meta property="og:url" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/index.html">
+<meta property="og:site_name" content="Tsglz的博客">
+<meta property="og:description" content="2024_SACC_安全组招新题wp题目链接：https:&#x2F;&#x2F;github.com&#x2F;tsglz&#x2F;tsglz.github.io&#x2F;releases&#x2F;download&#x2F;2024-SACC&#x2F;2024-SACC.rar 密码：2024-SACC 1_just_click 直接 IDA 打开，打开 omg(0) 即为 flag   如果你对 xyz(p) 感到好奇点开看了下，你就会发现进行了一个 异或0x5">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/1_open.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/1_main.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/1_flag.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/2_open.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/2_main.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/2_thr_sec.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/2_to_str.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/3_open.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/3_main.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/4_main.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/4_replace.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/4_rep.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/5_unpack.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/5_open.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/5_main.png">
+<meta property="og:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/6_die.png">
+<meta property="article:published_time" content="2024-10-17T00:39:50.000Z">
+<meta property="article:modified_time" content="2025-03-01T10:07:00.610Z">
+<meta property="article:author" content="Tsglz">
+<meta property="article:tag" content="CTF_wps">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/1_open.png">
+  
+  
+  
+  <title>2024_SACC_安全组招新 - Tsglz的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="2024_SACC_安全组招新"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-17 08:39" pubdate>
+          2024年10月17日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          756 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          7 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">2024_SACC_安全组招新</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="2024-SACC-安全组招新题wp"><a href="#2024-SACC-安全组招新题wp" class="headerlink" title="2024_SACC_安全组招新题wp"></a>2024_SACC_安全组招新题wp</h2><p>题目链接：<a target="_blank" rel="noopener" href="https://github.com/tsglz/tsglz.github.io/releases/download/2024-SACC/2024-SACC.rar">https://github.com/tsglz/tsglz.github.io/releases/download/2024-SACC/2024-SACC.rar</a></p>
+<p>密码：2024-SACC</p>
+<h3 id="1-just-click"><a href="#1-just-click" class="headerlink" title="1_just_click"></a>1_just_click</h3><p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/1_open.png" srcset="/img/loading.gif" lazyload alt="1_open"></p>
+<p>直接 IDA 打开，打开 <code>omg(0)</code> 即为 flag</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/1_main.png" srcset="/img/loading.gif" lazyload alt="1_main"></p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/1_flag.png" srcset="/img/loading.gif" lazyload alt="1_flag"></p>
+<p>如果你对 <code>xyz(p)</code> 感到好奇点开看了下，你就会发现进行了一个 <code>异或0x55</code> 的操作，但实际上它并没有实质性的影响</p>
+<h2 id="2-another-three-click"><a href="#2-another-three-click" class="headerlink" title="2_another_three_click"></a>2_another_three_click</h2><p>打开看一眼，看不懂，拖 IDA</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/2_open.png" srcset="/img/loading.gif" lazyload alt="2_open"></p>
+<p>看到 3 个 <code>test_func</code> 函数，合理推断 flag 是 三段式，点击进去看看</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/2_main.png" srcset="/img/loading.gif" lazyload alt="2_main"></p>
+<p>进入汇编界面，很容易看到三段 flag，一、三两段是明文，第二段需要转换一下</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/2_thr_sec.png" srcset="/img/loading.gif" lazyload alt="2_thr_sec"></p>
+<p>按a即可，将 flag 拼好即可提交</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/2_to_str.png" srcset="/img/loading.gif" lazyload alt="2_to_str"></p>
+<h2 id="3-MaybeXorAndRot13"><a href="#3-MaybeXorAndRot13" class="headerlink" title="3_MaybeXorAndRot13"></a>3_MaybeXorAndRot13</h2><p>打开文件，输出的是数字</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/3_open.png" srcset="/img/loading.gif" lazyload alt="3_open"></p>
+<p>然后打开 IDA 进行查看，同样是一串数字，可以看到进行了 <code>异或0x55</code> 的操作，在刚进入 IDA 的时候，其实能直接看到异或之前的内容，如果不确定，可以写个脚本验证一下</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/3_main.png" srcset="/img/loading.gif" lazyload alt="3_main"></p>
+<p>python：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">a=<span class="hljs-string">&quot;54 102 57 32 49 29 33 34 55 56 19 51 52 19 108 47 24 2 19 45 13 102 57 59 51 4 104 104&quot;</span><br>b=a.split()<br>c=<span class="hljs-built_in">list</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>,b))<br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(c)):<br>    d = <span class="hljs-built_in">chr</span>(c[i]^<span class="hljs-number">0x55</span>)<br>    <span class="hljs-built_in">print</span>(d,end=<span class="hljs-string">&quot;&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>c：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>    <span class="hljs-type">int</span> a[<span class="hljs-number">28</span>]= &#123;<span class="hljs-number">54</span>,<span class="hljs-number">102</span>,<span class="hljs-number">57</span>,<span class="hljs-number">32</span>,<span class="hljs-number">49</span>,<span class="hljs-number">29</span>,<span class="hljs-number">33</span>,<span class="hljs-number">34</span>,<span class="hljs-number">55</span>,<span class="hljs-number">56</span>,<span class="hljs-number">19</span>,<span class="hljs-number">51</span>,<span class="hljs-number">52</span>,<span class="hljs-number">19</span>,<span class="hljs-number">108</span>,<span class="hljs-number">47</span>,<span class="hljs-number">24</span>,<span class="hljs-number">2</span>,<span class="hljs-number">19</span>,<span class="hljs-number">45</span>,<span class="hljs-number">13</span>,<span class="hljs-number">102</span>,<span class="hljs-number">57</span>,<span class="hljs-number">59</span>,<span class="hljs-number">51</span>,<span class="hljs-number">4</span>,<span class="hljs-number">104</span>,<span class="hljs-number">104</span>&#125;;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">28</span>; i++)<br>    &#123;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%c&quot;</span>, a[i]^<span class="hljs-number">0x55</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>解出来是一样的，熟练的一眼 base64</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">c3ludHtwbmFfaF9zMWFxX3lnfQ==<br></code></pre></td></tr></table></figure>
+
+<p>得到如下内容，很明显这还不是最终的 flag，根据提示，还用到了 Rot13</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">synt&#123;pna_h_s1aq_yg&#125;<br></code></pre></td></tr></table></figure>
+
+<p>解密可得</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">flag&#123;can_u_f1nd_lt&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-in-string"><a href="#4-in-string" class="headerlink" title="4_in_string"></a>4_in_string</h2><p>这道题特别 ez，一打开就能看到一个半成品的 flag，提示中给的 in_string 只是提供一个快速查找有用信息的方法</p>
+<p>string位置：View &gt;&gt; Open subviews &gt;&gt; string</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">flag&#123;RighT t0 g3t f1Ag&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果直接提交 flag，会发现 flag 是错误的，</p>
+<p>打开 main 函数，刚才看到的 flag 就在 <code>text_57</code> 里面</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/4_main.png" srcset="/img/loading.gif" lazyload alt="4_main"></p>
+<p>接着在 <code>change</code> 函数中会看到替换的步骤，32 &gt;&gt; 95，熟练的知道是 ‘_‘替换了 ‘ ‘</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/4_replace.png" srcset="/img/loading.gif" lazyload alt="4_replace"></p>
+<p>如果不清楚可以查 ascii 码表，在汇编中也能应证</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/4_rep.png" srcset="/img/loading.gif" lazyload alt="4_rep"></p>
+<p>给半成品 flag 补上下划线即可</p>
+<h2 id="5-oh-upx"><a href="#5-oh-upx" class="headerlink" title="5_oh_upx"></a>5_oh_upx</h2><p>不了解的可能会有点难受，upx 壳是常用压缩壳，这里使用的是未经魔改的版本，只需要去网上下一个就好</p>
+<p>如果不脱壳，IDA 看到的代码就是乱七八糟的一坨，但其实不影响运行</p>
+<p>首先进行脱壳 <code>upx -d</code> 即可，不清楚使用方法可以浏览器查一下，非常清楚</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/5_unpack.png" srcset="/img/loading.gif" lazyload alt="5_unpack"></p>
+<p>然后使用 IDA 打开，在下方直接能看到两段 flag ，根据提示，flag 一共有三段</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/5_open.png" srcset="/img/loading.gif" lazyload alt="5_open"></p>
+<p>在 main 函数中直接能找到中间缺失的一段，拼起来即可</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/5_main.png" srcset="/img/loading.gif" lazyload alt="5_main"></p>
+<h2 id="6-inline-assembly"><a href="#6-inline-assembly" class="headerlink" title="6_inline_assembly"></a>6_inline_assembly</h2><p>这道题用到了内联汇编，这会一定程度上阻碍静态分析，但这里我并没有做过多的处理，所以可以直接在 String 里找到</p>
+<p>如果对 Windows 比较熟悉会知道，这段程序是 32 位的，不知道也没关系，DIE 可以进行分析</p>
+<p><img src="/2024/10/17/2024-SACC-%E5%AE%89%E5%85%A8%E7%BB%84%E6%8B%9B%E6%96%B0/6_die.png" srcset="/img/loading.gif" lazyload alt="6_die"></p>
+<p>用 32位 DIE 打开</p>
+<p>打开 String，直接能看到 flag <code>flag&#123;May23_th1s_1s_the_flag&#125;</code></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CTF-Re/" class="category-chain-item">CTF_Re</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CTF-wps/" class="print-no-link">#CTF_wps</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>2024_SACC_安全组招新</div>
+      <div>http://example.com/2024/10/17/2024-SACC-安全组招新/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Tsglz</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/18/scripts/" title="scripts">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">scripts</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/15/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" title="hexo博客搭建">
+                        <span class="hidden-mobile">hexo博客搭建</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+
+    Fluid.utils.listenDOMLoaded(function() {
+      Fluid.events.registerRefreshCallback(function() {
+        if ('mermaid' in window) {
+          mermaid.init();
+        }
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
