@@ -27,7 +27,7 @@
 <meta property="og:description" content="ppid 伪造(一)让恶意的程序看起来是由另一个进程产生的，主要用于逃避基于父子进程关系的检测 Windows 不能直接修改 ppid，只能在创建新进程时指定父进程句柄 使用环节通常使用在加载器中，也可以存在 payload 中或者将加载器和 payload 一同送进目标主机 伪造方法首先构造一个能够检索目标父进程的 pid 的函数，这样可以减少手动操作的不便 123456789101112131">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-10T02:22:38.000Z">
-<meta property="article:modified_time" content="2025-03-10T02:28:25.626Z">
+<meta property="article:modified_time" content="2025-03-10T14:34:26.324Z">
 <meta property="article:author" content="Tsglz">
 <meta property="article:tag" content="免杀">
 <meta name="twitter:card" content="summary_large_image">
@@ -310,7 +310,7 @@
 
 <h2 id="对抗检测"><a href="#对抗检测" class="headerlink" title="对抗检测"></a>对抗检测</h2><p>用这种方法伪造的 ppid 是能够被检测到的</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/countercept/ppid-spoofing/blob/master/detect-ppid-spoof.py">https://github.com/countercept/ppid-spoofing/blob/master/detect-ppid-spoof.py</a></p>
-<p>父进程欺骗绕过可以绕过脚本对于父子原进程关系的检测，减少被发现的可能</p>
+<p>父进程欺骗绕过可以绕过脚本对于父子原进程关系的检测，减少被发现的可能，这个过几天写</p>
 
                 
               </div>
